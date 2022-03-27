@@ -1,0 +1,70 @@
+.container {
+  color: white;
+  top: 0;
+  position: absolute;
+  margin: 0 auto;
+  width: 100%;
+  height: 250vh;
+  
+}
+
+.hdr {
+  margin: 0 auto;
+  color: white;
+  z-index: 999;
+}
+
+/* header styles  */
+@media screen and (min-width: 460px) {
+  .dtview {
+    top: 30vh;
+    position: absolute;
+    text-align: center;
+    margin: 0 auto;
+    justify-content: center;
+    width: 100%;
+    z-index: 3;
+    font-size: 2.8rem;
+    font-weight: bolder;
+    line-height: 3rem;
+    font-family: "Kasse";
+    pointer-events: none;
+  }
+}
+
+.mbview {
+  visibility: hidden;
+}
+
+@media screen and (max-width: 460px) {
+  .mbview {
+    visibility: visible;
+    top: 30vh;
+    position: absolute;
+    text-align: center;
+    margin: 0 auto;
+    justify-content: center;
+    width: 100%;
+    z-index: 999;
+    font-size: 3rem;
+    font-weight: bolder;
+    line-height: 3rem;
+    font-family: "Kasse";
+  }
+  .dtview {
+    visibility: hidden;
+  }
+}
+
+/* art display  */
+.featured {
+  z-index: 3;
+  top: 20rem;
+  position: relative;
+  background: fixed;
+}
+
+.featuredart {
+  width: 50%;
+  height: 100%;
+}

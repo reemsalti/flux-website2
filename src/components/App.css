@@ -1,0 +1,46 @@
+/* .contents {
+  color: white;
+  position: absolute;
+  z-index: 999;
+} */
+
+.logobutton {
+  font-size: 1.5rem;
+  margin: 1.5rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  cursor: default;
+}
+
+TCanvas {
+  position: absolute;
+  z-index: 0;
+  object-fit: cover;
+  
+}
+
+.wrapper {
+  /* position: relative; */
+  z-index: 3;
+  
+}
+
+.grain {
+  z-index: 2;
+  top: 0;
+  opacity: 50%;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-repeat: repeat-y(999);
+  color: rgba(0, 0, 0, 0.575);
+  object-fit: cover;
+  background-attachment: scroll;
+  
+}
+
+/* .bg {
+  background-image: url('./images/grain5.gif');
+  background-size: cover;
+  position: absolute;
+  z-index: 2;
+} */
