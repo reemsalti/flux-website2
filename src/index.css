@@ -45,10 +45,6 @@ code {
 	  src: url('./fonts/AutumninNovember.ttf');
   }
 
-  @font-face {
-	  font-family: 'SIL';
-	  src: url('./fonts/SILOpenFontLicense.txt');
-  }
 
   @font-face {
 	  font-family: 'Fight';

@@ -23,7 +23,7 @@ export const App: VFC = () => {
 			
 		<Navbar toggle={toggle}/>
 		<Sidebar isOpen={isOpen} toggle={toggle}/>
-		<div className='wrapper' style={{ position: 'absolute', display: "inline-block", width: '100vw', height: '200vh', top:'0' }}>
+		<div className='wrapper' style={{ position: 'absolute', display: "inline-block", width: '100vw', height: '100vh', top:'0' }}>
 			<div className='bg'>
 				{/* <img className='grain' src={grain} alt='' /> */}
 			</div>
