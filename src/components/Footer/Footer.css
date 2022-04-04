@@ -1,25 +1,23 @@
 .footer-container {
-  background: rgb(235, 235, 235);
-  height: auto;
-  display: block;
-  text-align: center !important;
+  position: absolute;
+  bottom: 0;
+  z-index:10;
+  margin: 0 auto;
+  justify-content: center;
+  text-align: center;
+  background-color:rgba(0, 0, 0, 0.552);
+  width: 100%;
+  height: 100%;
+
 }
 
 .footernav {
-  margin: 0;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  justify-content: center;
-  align-items: center;
-}
+padding: 2rem;
+ }
 
 .fnlink {
-  text-decoration: none;
-  color: black;
-  cursor: pointer;
-  font-family: "Monsterrat";
-  padding: 8px;
-  display: block;
+  padding: 1rem;
+  bottom: 0;
 }
 
 .copyright {
@@ -28,30 +26,20 @@
   padding: 0;
   font-size: 0.8rem;
   padding-bottom: 1rem;
+  color: white;
+}
+
+
+.slgn {
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline;
+  text-decoration: none;
+  font-family: "Poppins";
+  text-align: right;
+  color: rgb(66 83 109);
 }
 
 .footerlogo {
-  padding-top: 2rem !important;
-  line-height: 15px;
-  margin: 0;
-  color: #000;
-  cursor: pointer;
-  font-size: 1.5rem;
-  
-  
-  text-decoration: none;
-  
-  
-  font-family: "Poppins";
-  font-weight: bold;
-}
-
-.slgn {
-cursor: pointer;
-font-size: 0.9rem;
-display: inline;
-text-decoration: none;
-font-family: "Poppins";
-text-align: right;
-color: rgb(66 83 109);
+  height: 3rem;
 }

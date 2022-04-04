@@ -1,8 +1,6 @@
-/* .contents {
-  color: white;
-  position: absolute;
-  z-index: 999;
-} */
+* {
+height: auto;
+}
 
 .logobutton {
   font-size: 1.5rem;
@@ -11,17 +9,15 @@
   cursor: default;
 }
 
-TCanvas {
-  position: absolute;
-  z-index: 0;
-  object-fit: cover;
-  
+*::-webkit-scrollbar{
+  display: none;
 }
+
 
 .wrapper {
   /* position: relative; */
   z-index: 3;
-  
+  overflow-y: scroll;
 }
 
 .grain {
@@ -35,7 +31,6 @@ TCanvas {
   color: rgba(0, 0, 0, 0.575);
   object-fit: cover;
   background-attachment: scroll;
-  
 }
 
 /* .bg {
@@ -44,3 +39,12 @@ TCanvas {
   position: absolute;
   z-index: 2;
 } */
+
+.footerwrapper {
+position: absolute;
+bottom: 0;
+background: fixed;
+margin: 0 auto;
+width: 100%;
+height: auto;
+}

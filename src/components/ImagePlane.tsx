@@ -23,6 +23,7 @@ export const ImagePlane: VFC = () => {
 			{textures.map((texture, i) => (
 				<Plane key={i} args={[6, 1 * (315 / 600)]} material={material(texture)} scale={0.9} position={[i - 1, 0, 0]} />
 			))}
+		
 		</>
 	)
 }

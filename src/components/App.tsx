@@ -5,10 +5,15 @@ import { TCanvas } from './TCanvas';
 import Navbar from './Navbar/index';
 import Sidebar from './Sidebar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import {Home} from './Home'
-import Contact from './Contact';
-// import grain from './images/grain5.gif';
+//import {Home} from './Home'
 import './App.css';
+import Contact from './ContactCanvas';
+import ShopCanvas from './ShopCanvas';
+import FooterComponent from './Footer/Footer.js';
+//import Footer from './footer/Footer';
+// import Footer from './Footer/Footer';
+
+
 
 export const App: VFC = () => {
 	const [isOpen, setIsOpen] = useState(false)
@@ -23,20 +28,17 @@ export const App: VFC = () => {
 			
 		<Navbar toggle={toggle}/>
 		<Sidebar isOpen={isOpen} toggle={toggle}/>
-		<div className='wrapper' style={{ position: 'absolute', display: "inline-block", width: '100vw', height: '100vh', top:'0' }}>
-			<div className='bg'>
-				{/* <img className='grain' src={grain} alt='' /> */}
-			</div>
-			<TCanvas />
+		<div className='wrapper' style={{ position: 'relative', width: '100vw', height: '100vh', top:'0' }}>
 			<Leva hidden/>
+			<div className='footerwrapper'>
+				<FooterComponent/>
 			</div>
 			<Routes>
-				<Route path={"/"} element={<Home/>}/>
+				<Route path={"/"} element={<TCanvas/>}/>
 				<Route path={'/contact'} element={<Contact/>}/>
-
+				<Route path={'/shop'} element={<ShopCanvas/>}/>
 			</Routes>
-		
-		
+		</div>
 		</Router>
 		</>
 	)

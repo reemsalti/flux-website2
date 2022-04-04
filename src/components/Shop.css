@@ -1,0 +1,13 @@
+.hdr2 {
+    top: 45vh;
+    position: absolute;
+    text-align: center;
+    margin: 0 auto;
+    justify-content: center;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: bolder;
+    line-height: 3rem;
+    font-family: "Kasse";
+    z-index: 999;
+}

@@ -1,0 +1,162 @@
+.formcontainer {
+  width: 100%;
+  padding: 1rem;
+  margin: 0 auto;
+  z-index: 999;
+  position: absolute;
+}
+
+.formcontainer label {
+  display: block;
+  text-align: center;
+  margin: auto;
+  padding-top: 1rem;
+  padding-bottom: 0.2rem;
+  font-family: Kasse;
+}
+
+.submitbtncontainer {
+  padding: 1.5rem;
+  padding-bottom: 0rem;
+  justify-content: center;
+  text-align: center;
+}
+
+.formcontainer input,
+textarea {
+  display: block;
+  border: 1px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.formcontainer textarea {
+  height: 10vh;
+}
+
+textarea {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.formcontainer label {
+  display: block;
+  text-align: left;
+  font-size: 14px;
+}
+
+.infofield input {
+  max-width: 160px;
+  padding: 0.2rem;
+}
+
+.msgbox label {
+  color: white;
+  margin-top: 5px;
+  text-align: left !important;
+}
+
+.topsection {
+  text-align: center;
+  margin: 2rem;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.infofield {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 2fr;
+  grid-template-rows: 3fr;
+  column-gap: 10px;
+}
+
+.formcontainer {
+  background-color: rgba(0, 0, 0, 0.74);
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+@media screen and (max-width: 460px) {
+  .formcontainer {
+    max-width: 600px;
+    margin-top: 0rem;
+  }
+}
+form {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: auto;
+}
+
+.infofield {
+  display: grid;
+  margin: 0 auto;
+  width: auto;
+  justify-content: center;
+}
+
+.msgbox {
+  display: grid;
+  grid-column: 1/3;
+  width: auto;
+  padding-bottom: 1rem;
+}
+
+.submitbtncontainer {
+  display: grid;
+  grid-column: 1/3;
+  padding-bottom: 1rem;
+}
+
+input[type="submit"] {
+  background-color: rgb(112, 18, 18);
+  color: white;
+  font-weight: bold;
+  border-radius: 7px;
+  align-items: center;
+  height: 2rem;
+  border: none;
+  font-family: Kasse;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.formheader {
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: "ProximaNova";
+  text-align: center;
+
+  /* centered in formcontainer */
+}
+
+.mailicon {
+  font-size: 3rem;
+  color: rgb(247, 151, 7);
+  text-align: center !important;
+  padding-top: 1.2rem;
+  /* centered in formcontainer */
+}
+
+label {
+  font-family: "ProximaNova";
+  color: white;
+  font-size: 1.4rem;
+  text-align: left !important;
+}
+
+input {
+  width: 170px;
+  max-width: 190px;
+}
+
+li {
+  list-style: none;
+}
+
+.formheader {
+  font-family: "Poppins";
+  margin-bottom: 0.6rem;
+}
