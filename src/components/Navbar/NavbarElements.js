@@ -41,7 +41,7 @@ text-decoration: none;
 image-rendering: optimizeQuality;
 
 @media screen and (max-width: 460px) {
-    height: 100px;
+    height: 50px;
     
 }
 `;

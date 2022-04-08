@@ -1,5 +1,5 @@
 * {
-height: auto;
+height: 100%;
 }
 
 .logobutton {
@@ -43,7 +43,6 @@ height: auto;
 .footerwrapper {
 position: absolute;
 bottom: 0;
-background: fixed;
 margin: 0 auto;
 width: 100%;
 height: auto;

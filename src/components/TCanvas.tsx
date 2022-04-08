@@ -6,7 +6,7 @@ import { Effect } from './Effect';
 import { ImagePlane } from './ImagePlane';
 import { Scroll, ScrollControls } from "@react-three/drei";
 import { Home } from './Home';
-import grain from './images/grain5.gif'
+import grain from './images/grain8.gif'
 import './Home.css'
 
 
@@ -31,7 +31,7 @@ export const TCanvas: VFC = () => {
 			{/* object */}
 			<Suspense fallback={null}>
 			<ScrollControls
-			pages={2.6} // Each page takes 100% of the height of the canvas
+			pages={5} // Each page takes 100% of the height of the canvas
 			distance={1} // A factor that increases scroll bar travel (default: 1)
 			damping={4} // Friction, higher is faster (default: 4)
 			horizontal={false} // Can also scroll horizontally (default: false)
@@ -41,8 +41,8 @@ export const TCanvas: VFC = () => {
 					<ImagePlane/>
 				</Scroll>
 				<Scroll html>
-					<div className='wrapper' style={{width: "100vw", height: '200vh', backgroundSize: '100%', backgroundRepeat: 'repeat', backgroundImage: 'url(./images/grain5.gif)'}}>
-					<img className='grain' src={grain} alt='' style={{width: '100%', height: '100vh' , zIndex: '999', opacity: '50%', backgroundRepeat: "repeat-y(3)"}}/>
+					<div className='wrapper' style={{width: "100vw", height: '300vh', backgroundSize: '100%', backgroundRepeat: 'repeat'}}>
+					<img className='grain' src={grain} alt='' style={{width: '100%', height: '300vh' , zIndex: '999', opacity: '50%', backgroundRepeat: "repeat-y(3)", transform: '180deg'}}/>
 						<Home/>
 					</div>
 				</Scroll>

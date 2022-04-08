@@ -93,7 +93,7 @@ a {
 .featured {
   z-index: 999;
   position: absolute;
-  top: 100vh;
+  top: 230vh;
   margin: 3rem auto;
   align-items: center;
   margin: 0;
@@ -121,4 +121,26 @@ a {
   width: 100%;
   height: 200vh;
   object-fit: cover;
+}
+
+.biosection {
+  margin: 0 auto;
+  width: 100%;
+  justify-content: center;
+  position: absolute;
+  top: 100vh;
+}
+
+.artiststmnt {
+  margin: 3rem;
+  font-size: 1rem;
+  line-height: 1rem;
+  
+}
+
+.stmnthdr {
+  margin: 0 auto;
+  width: 100%;
+  font-size: 1rem;
+
 }
