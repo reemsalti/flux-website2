@@ -37,9 +37,9 @@ export const TCanvas: VFC = () => {
 			damping={5} // Friction, higher is faster (default: 4)
 			horizontal={false} // Can also scroll horizontally (default: false)
 			infinite={false} // Can also scroll infinitely (default: false)
-			><ImagePlane/>
+			>
 				<Scroll>
-					
+					<ImagePlane/>
 				</Scroll>
 				<Scroll html>
 					<div className='wrapper' style={{width: "100vw", height: '300vh', backgroundSize: '100%', backgroundRepeat: 'repeat'}}>

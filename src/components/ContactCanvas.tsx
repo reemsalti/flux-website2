@@ -28,7 +28,7 @@ function Contact() {
 			{/* object */}
 			<Suspense fallback={null}>
 			<ScrollControls
-  pages={1.05} // Each page takes 100% of the height of the canvas
+  pages={1} // Each page takes 100% of the height of the canvas
   distance={1} // A factor that increases scroll bar travel (default: 1)
   damping={5} // Friction, higher is faster (default: 4)
   horizontal={false} // Can also scroll horizontally (default: false)
