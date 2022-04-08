@@ -52,7 +52,7 @@ color: #fff;
 export const SidebarMenu = styled.ul`
 display: block;
 text-align: center;
-padding-top: 40px;
+padding-top: 30px;
 
 @media screen and (max-width: 480px) {
     grid-template-rows: repeat(6, 60px);

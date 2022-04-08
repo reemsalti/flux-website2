@@ -36,6 +36,7 @@ export const Home = () => {
         <img className='featuredart' src={art2} alt=''/>
         <img className='featuredart' src={art3} alt=''/>
       </div>
+      <p className='copyright'>Through & Through<strong>©</strong> 2022</p>
     </div>
   
     </>

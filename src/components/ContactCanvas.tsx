@@ -5,7 +5,7 @@ import { Effect } from './Effect';
 import { ImagePlane } from './ImagePlane';
 import { Scroll, ScrollControls } from "@react-three/drei";
 import Contactpage from './Contact';
-import grain from './images/grain8.gif';
+//import grain from './images/grain8.gif';
 
 
 function Contact() {
@@ -41,7 +41,7 @@ function Contact() {
   </Scroll>
   <Scroll html>
 	  <div className='wrapper' style={{width: "100vw", height: '200vh'}}>
-	  <img className='grain' src={grain} alt='' style={{width: '100%', height: '100%', opacity: '50%', position: 'absolute', zIndex:'1', transform: "180deg"}}/>
+	  {/* <img className='grain' src={grain} alt='' style={{width: '100%', height: '100%', opacity: '50%', position: 'absolute', zIndex:'1', transform: "180deg"}}/> */}
 	<Contactpage/>
 	</div>
   </Scroll>
