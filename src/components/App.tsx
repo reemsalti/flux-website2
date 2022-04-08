@@ -4,7 +4,7 @@ import React, { VFC } from 'react';
 import { TCanvas } from './TCanvas';
 import Navbar from './Navbar/index';
 import Sidebar from './Sidebar';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 //import {Home} from './Home'
 import './App.css';
 import Contact from './ContactCanvas';
@@ -24,7 +24,7 @@ export const App: VFC = () => {
 
 	return (
 		<>
-		<Router>
+		<HashRouter>
 			
 		<Navbar toggle={toggle}/>
 		<Sidebar isOpen={isOpen} toggle={toggle}/>
@@ -39,7 +39,7 @@ export const App: VFC = () => {
 				<Route path={'/shop'} element={<ShopCanvas/>}/>
 			</Routes>
 		</div>
-		</Router>
+		</HashRouter>
 		</>
 	)
 }
