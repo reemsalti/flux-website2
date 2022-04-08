@@ -5,7 +5,7 @@ import { Effect } from './Effect';
 import { ImagePlane } from './ImagePlane';
 import { Scroll, ScrollControls } from "@react-three/drei";
 import Contactpage from './Contact';
-//import grain from './images/grain8.gif';
+import grain from './images/grain5.gif';
 
 
 function Contact() {
@@ -36,12 +36,10 @@ function Contact() {
 >
   {/* You can have components in here, they are not scrolled, but they can still
       react to scroll by using useScroll! */}
-  <Scroll>
 	  <ImagePlane/>
-  </Scroll>
   <Scroll html>
-	  <div className='wrapper' style={{width: "100vw", height: '200vh'}}>
-	  {/* <img className='grain' src={grain} alt='' style={{width: '100%', height: '100%', opacity: '50%', position: 'absolute', zIndex:'1', transform: "180deg"}}/> */}
+	  <div className='wrapper' style={{width: "100vw", height: '100vh'}}>
+	  <img className='grain' src={grain} alt='' style={{width: '100%', height: '100%', opacity: '70%', position: 'absolute', zIndex:'999'}}/>
 	<Contactpage/>
 	</div>
   </Scroll>

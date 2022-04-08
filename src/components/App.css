@@ -15,28 +15,20 @@
 .wrapper {
   /* position: relative; */
   z-index: 3;
-  overflow-y: scroll;
 }
 
-.grain {
-  z-index: 2;
-  top: 0;
-  opacity: 50%;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-repeat: repeat-y(999);
-  color: rgba(0, 0, 0, 0.575);
-  object-fit: cover;
-  background-attachment: scroll;
-}
 
-/* .bg {
+
+.bgimg {
   background-image: url('./images/grain5.gif');
-  background-size: cover;
+  background-size: fill;
   position: absolute;
-  z-index: 2;
-} */
+  z-index: 1;
+  opacity: 70%;
+  width: 100%;
+  height: 500vh;
+  background-repeat: repeat(10);
+}
 
 .footerwrapper {
 position: absolute;
@@ -47,10 +39,3 @@ height: auto;
 }
 
 
-  #world {
-    position: absolute;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-  
-}

@@ -37,8 +37,9 @@ export const TCanvas: VFC = () => {
 			horizontal={false} // Can also scroll horizontally (default: false)
 			infinite={false} // Can also scroll infinitely (default: false)
 			>
+                <ImagePlane/>
 				<Scroll>
-					<ImagePlane/>
+					
 				</Scroll>
 				<Scroll html>
 					<div className='wrapper' style={{width: "100vw", height: '300vh', backgroundSize: '100%', backgroundRepeat: 'repeat'}}>

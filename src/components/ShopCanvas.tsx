@@ -35,8 +35,9 @@ function ShopCanvas() {
 >
   {/* You can have components in here, they are not scrolled, but they can still
       react to scroll by using useScroll! */}
-  <Scroll>
 	  <ImagePlane/>
+  <Scroll>
+	  
   </Scroll>
   <Scroll html>
 	  <div className='wrapper' style={{width: "100vw", height: '100vh'}}>

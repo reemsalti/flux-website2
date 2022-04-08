@@ -61,9 +61,8 @@ code {
 	  src: url('./fonts/AeroviasBrasilNF.ttf');
   }
 
-  #root {
-	position: absolute;
-	overflow: hidden;
-	width: 100%;
-	height: 100%;
-  }
+
+  @font-face {
+	font-family: 'Copperplate';
+	src: url('./fonts/CopperplateRegular.ttf');
+}
