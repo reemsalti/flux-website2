@@ -8,7 +8,7 @@ import { Scroll, ScrollControls } from "@react-three/drei";
 import { Home } from './Home';
 import grain from './images/grain5.gif'
 import './Home.css'
-import { OrbitControls } from '@react-three/drei';
+//import { OrbitControls } from '@react-three/drei';
 
 
 export const TCanvas: VFC = () => {
