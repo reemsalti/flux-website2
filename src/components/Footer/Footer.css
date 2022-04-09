@@ -13,33 +13,49 @@
 
 .footernav {
 padding: 2rem;
+font-family: Copperplate;
+font-size: 0.9rem;
  }
 
 .fnlink {
-  padding: 1rem;
+  padding: 2rem;
   bottom: 0;
 }
 
 .copyright {
-  font-family: "Monsterrat";
+  font-family: CopperplateN;
   position: relative;
   padding: 0;
   font-size: 0.8rem;
-  padding-bottom: 2rem;
   color: white;
 }
 
 
-.slgn {
-  cursor: pointer;
-  font-size: 0.9rem;
-  display: inline;
-  text-decoration: none;
-  font-family: "Poppins";
-  text-align: right;
-  color: rgb(66 83 109);
-}
-
 .footerlogo {
   height: 3rem;
+}
+
+/* .dev {
+  color: white;
+  font-size: 0.8rem;
+  padding-bottom: 2rem;
+  font-family: CopperplateN;
+  justify-content: right;
+  text-align: right;
+  padding-right: 1rem;
+} */
+
+.fl3 {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  font-size: 0.7rem;
+  padding-top: 0rem;
+  padding: 1rem;
+  font-family: CopperplateN;
+}
+
+.iglink {
+  
 }

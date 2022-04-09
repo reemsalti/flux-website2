@@ -1,6 +1,6 @@
 
 import React from 'react'
-
+import { GrInstagram } from 'react-icons/gr';
 import './Footer.css';
 import logoimg from './logo1.png';
 
@@ -14,8 +14,15 @@ function Footer () {
                  </div>
                 
                 <a href="https://throughandthrough.ca" className='footerlogo'><img className="footerlogo"src={logoimg} alt=''/></a>
-                <p className='copyright'>Through & Through<strong>©</strong> 2022</p>
+                <p className='copyright'>Through & Through © 2022</p>
+                <div className='fl3'>
                 
+                <p>
+                  
+                  <a className='iglink' href='https://www.instagram.com/thrundthru/' target='t_blank'>
+                  <GrInstagram className='ficon'/> @thrundthru
+                  </a>
+                </p><p className='dev'>Website developed by <u>WebDevReem</u></p></div>
            </div>
     );
 }
