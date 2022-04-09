@@ -91,7 +91,7 @@
     display: flex;
     margin: 1rem auto;
     padding: 2rem;
-    background-color: rgba(0, 0, 0, 0.526);
+    
     
   }
   
@@ -102,7 +102,7 @@
   }
 
   .panel {
-    background-color: rgba(0, 0, 0, 0.526);
+    
     width: 100%;
     margin: 1rem auto;
     padding-bottom: 1rem;
@@ -154,7 +154,7 @@
   }
   
   .panel {
-    background-color: rgba(0, 0, 0, 0.352);
+    
     width: 100%;
     margin: 1rem auto;
     padding-bottom: 1rem;
@@ -165,7 +165,7 @@
     
     margin: 0 auto;
     padding: 1rem;
-    background-color: rgba(0, 0, 0, 0.352);
+   
     
   }
 }
