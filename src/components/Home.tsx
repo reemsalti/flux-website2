@@ -1,5 +1,4 @@
 import React from 'react';
-import Footer from './Footer/Footer';
 import './Home.css';
 import art1 from './images/artwork1.jpg';
 import art2 from './images/photo2.jpg';
