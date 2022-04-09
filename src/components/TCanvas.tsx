@@ -57,6 +57,7 @@ export const TCanvas: VFC = () => {
 
 				
 			</Suspense>
+			<Preload/>
 			<Effect />
 			
 		</Canvas>
