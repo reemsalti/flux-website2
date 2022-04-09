@@ -13,7 +13,7 @@ function Footer () {
                     <a className="fnlink" href='https://throughandthrough.ca/#/shop'>Shop</a>
                  </div>
                 
-                <a href="https://throughandthrough.ca" className='footerlogo'><img className="footerlogo"src={logoimg} alt=''/></a>
+                <a href="https://throughandthrough.ca/#/" className='footerlogo'><img className="footerlogo"src={logoimg} alt=''/></a>
                 <p className='copyright'>Through & Through © 2022</p>
                 <div className='fl3'>
                 
