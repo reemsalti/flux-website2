@@ -39,7 +39,9 @@ function Contact() {
 	  <ImagePlane/>
   <Scroll html>
 	  <div className='wrapper' style={{width: "100vw", height: '100vh'}}>
-	  <img className='grain' src={grain} alt='' style={{width: '100%', height: '100%', opacity: '70%', position: 'absolute', zIndex:'999'}}/>
+		  <div className='bgimg' style={{ zIndex: '99'}}>
+      		<img className='grain' src={grain} alt=''/>
+      	</div>
 	<Contactpage/>
 	</div>
   </Scroll>

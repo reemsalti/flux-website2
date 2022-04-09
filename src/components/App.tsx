@@ -8,7 +8,7 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Contact from './ContactCanvas';
 import ShopCanvas from './ShopCanvas';
-import grain from './images/grain5.gif'
+//import grain from './images/grain5.gif'
 
 export const App: VFC = () => {
 	const [isOpen, setIsOpen] = useState(false)

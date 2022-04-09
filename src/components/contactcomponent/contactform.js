@@ -54,7 +54,7 @@ export const ContactForm = () => {
     <div className='formwrapper'>
     <div className='formcontainer'>
       <div className="topsection">
-        {/* <h1 className="formheader">Send Veronica a Message<br></br><BiMailSend className="mailicon"/></h1> */}
+      <h3 className='formhdr'>Leave a message</h3>
             
       </div>
           <form id="contactForm" ref={form} onSubmit={sendEmail}>

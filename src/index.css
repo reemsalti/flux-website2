@@ -66,3 +66,8 @@ code {
 	font-family: 'Copperplate';
 	src: url('./fonts/CopperplateRegular.ttf');
 }
+
+@font-face {
+	font-family: 'CopperplateN';
+	src: url('./fonts/CopperplateBQ.otf');
+}

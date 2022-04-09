@@ -16,17 +16,18 @@ export const Home = () => {
         <h1 className='dtview'>Through & Through</h1>
         <h1 className='mbview'>Through<br></br>&<br></br>Through</h1>
         <h2 className='by'> by Veronica Hermez</h2>
-      </div> 
+      </div><h3 className='stmnthdr'>Artist's Statement</h3>
       <div className='biosection'>
-        <h3 className='stmnthdr'>Artist's Statement</h3>
-              <p className='artiststmnt'>My fluid and bold work is created by 
+        
+              <p className='artiststmnt'>"My fluid and bold work is created by 
               showing up and allowing my first brush stroke to inspire the next. 
               I create organic shapes and utilize a wide array of colors as a means 
               of translation between my psyche and the viewer of my work. The shapes 
               that I create are a result of my subconscious imagination and later inspire 
-              the subject matter; I aim to leave the interpretation of my work to each viewer.</p>
+              the subject matter; I aim to leave the interpretation of my work to each viewer."</p>
       </div>
       <div className='featured'> 
+      <h3 className='fthdr'>Portfolio</h3>
         <img className='featuredart2' src={art4} alt='' />
         <div>
         <img className='featuredart' src={art2} alt=''/>
