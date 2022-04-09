@@ -4,7 +4,10 @@
     position: absolute;
     margin: 0 auto;
     width: 100%;
-    
+     background-image: url('./images/grain5.gif');
+    background-size: cover;
+    background-repeat: repeat;
+    filter: url("./images/grain5.gif");
     z-index: 999;
 }
 

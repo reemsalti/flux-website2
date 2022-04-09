@@ -5,7 +5,7 @@ import { Effect } from './Effect';
 import { ImagePlane } from './ImagePlane';
 import { Scroll, ScrollControls } from "@react-three/drei";
 import Contactpage from './Contact';
-import grain from './images/grain5.gif';
+// import grain from 'https://i.gifer.com/Azgz.gif';
 import Footer from './Footer/Footer';
 
 
@@ -29,7 +29,7 @@ function Contact() {
 			{/* object */}
 			<Suspense fallback={null}>
 			<ScrollControls
-  pages={1.34} // Each page takes 100% of the height of the canvas
+  pages={1.35} // Each page takes 100% of the height of the canvas
   distance={1} // A factor that increases scroll bar travel (default: 1)
   damping={5} // Friction, higher is faster (default: 4)
   horizontal={false} // Can also scroll horizontally (default: false)
@@ -39,9 +39,9 @@ function Contact() {
       react to scroll by using useScroll! */}
 	  <ImagePlane/>
   <Scroll html>
-	  <div className='wrapper' style={{width: "100vw", height: '135vh'}}>
+	  <div className='wrapper' style={{width: "100vw", height: '136vh'}}>
 		  <div className='bgimg' style={{ zIndex: '99'}}>
-      		<img className='grain' src={grain} alt=''/>
+      		<img className='grain' src="https://i.gifer.com/Azgz.gif" alt=''/>
       	</div>
 	<Contactpage/>
 	<Footer/>
