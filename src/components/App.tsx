@@ -1,6 +1,6 @@
 import { Leva } from 'leva';
 import { useState } from 'react';
-import React, { VFC } from 'react';
+import React, {VFC } from 'react';
 import { TCanvas } from './TCanvas';
 import Navbar from './Navbar/index';
 import Sidebar from './Sidebar';
@@ -10,7 +10,7 @@ import Contact from './ContactCanvas';
 import ShopCanvas from './ShopCanvas';
 //import grain from './images/grain5.gif'
 
-export const App: VFC = () => {
+export const App: VFC =  () => {
 	const [isOpen, setIsOpen] = useState(false)
   
   	const toggle = () => {
