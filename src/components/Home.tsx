@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from './Footer/Footer';
 //import FooterComponent from './Footer/Footer';
 // import FooterComponent from './Footer/Footer';
 import './Home.css';
@@ -35,7 +36,7 @@ export const Home = () => {
         </div>
         <img className='featuredart2' src={art1} alt=''/>
       </div>
-      {/* <p className='copyright'>Through & Through<strong>©</strong> 2022</p> */}
+      <Footer/>
     </div>
   
     </>
