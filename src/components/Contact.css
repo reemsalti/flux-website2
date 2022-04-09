@@ -4,7 +4,7 @@
     position: absolute;
     margin: 0 auto;
     width: 100%;
-    height: 100vh;
+    
     z-index: 999;
     /* background-image: url('./images/grain5.gif');
     background-size: cover;
@@ -51,7 +51,7 @@
     margin: 0 auto;
     padding-top: 2rem;
     padding-bottom: 2rem;
-    background-color: rgba(0, 0, 0, 0.594);
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .cicon {

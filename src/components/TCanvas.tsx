@@ -9,6 +9,7 @@ import { Home } from './Home';
 
 import './Home.css'
 import grain from './images/grain5.gif'
+import Footer from './Footer/Footer';
 //import { OrbitControls } from '@react-three/drei';
 
 
@@ -33,7 +34,7 @@ export const TCanvas: VFC = () => {
 			{/* object */}
 			<Suspense fallback={null}>
 			<ScrollControls
-			pages={3.7} // Each page takes 100% of the height of the canvas
+			pages={4} // Each page takes 100% of the height of the canvas
 			distance={1} // A factor that increases scroll bar travel (default: 1)
 			damping={4} // Friction, higher is faster (default: 4)
 			horizontal={false} // Can also scroll horizontally (default: false)
@@ -44,12 +45,13 @@ export const TCanvas: VFC = () => {
 					
 				</Scroll>
 				<Scroll html>
-					<div className='wrapper' style={{width: "100vw", height: '400vh'}}>
+					<div className='scrollwrapper' style={{width: "100vw", height: '400vh'}}>
 						<div className='bgimg' style={{ zIndex: '99'}}>
       						<img className='grain' src={grain} alt=''/>
       					</div>
-					
 						<Home/>
+						
+						<Footer/>
 					</div>
 				</Scroll>
 			</ScrollControls>

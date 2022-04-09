@@ -6,6 +6,7 @@ import { ImagePlane } from './ImagePlane';
 import { Scroll, ScrollControls } from "@react-three/drei";
 import Shop from './Shop';
 import grain from './images/grain5.gif'
+import Footer from './Footer/Footer';
 
 function ShopCanvas() {
   return (
@@ -40,13 +41,13 @@ function ShopCanvas() {
 	  
   </Scroll>
   <Scroll html>
-	  <div className='wrapper' style={{width: "100vw", height: '100vh'}}>
-      	<div className='bgimg' style={{ zIndex: '99'}}>
-      		<img className='grain' src={grain} alt=''/>
-      	</div>
-    <Shop/>
-	
-	</div>
+  <div className='wrapper' style={{width: "100vw", height: '100vh'}}>
+						<div className='bgimg' style={{ zIndex: '99'}}>
+      						<img className='grain' src={grain} alt=''/>
+      					</div>
+						<Shop	/>
+						<Footer/>
+					</div>
   </Scroll>
 </ScrollControls>
 
