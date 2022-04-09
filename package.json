@@ -2,7 +2,7 @@
 	"name": "thrunthru-shopifywebsite",
 	"version": "0.1.0",
 	"private": true,
-	"homepage": "https://throughandthrough.ca",
+	"homepage": "",
 	"dependencies": {
 		"@emailjs/browser": "^3.5.0",
 		"@react-three/drei": "^8.3.1",
