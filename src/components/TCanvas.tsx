@@ -8,7 +8,7 @@ import { Scroll, ScrollControls } from "@react-three/drei";
 import { Home } from './Home';
 
 import './Home.css'
-import grain from './images/grain5.gif';
+//import grain from './images/grain5.gif';
 import Footer from './Footer/Footer';
 //import { OrbitControls } from '@react-three/drei';
 
@@ -43,8 +43,9 @@ export const TCanvas: VFC = () => {
 			<Preload/>
 				<Scroll html>
 					<div className='wrapper' style={{width: "100vw", height: '485vh'}}>
-      						<img className='grain' src={grain} alt=''/>
-      					
+					<div className='bgimg' style={{ zIndex: '99'}}>
+      						<p></p>
+      					</div>
 						<Home/>
 						<Footer/>
 					</div>
