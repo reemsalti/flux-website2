@@ -36,16 +36,18 @@ export const Home = () => {
         <p className='title'>Through the Looking Glass</p>
       </div>
 
-      <div className='panel'>
+<div className='panel2'>
+      <div className='subpanel'>
         <img className='featuredart' src={art2} alt=''/>
         <p className='title'>Mandate of Heaven</p>
       </div>
 
-      <div className='panel'>
+      <div className='subpanel'>
         <img className='featuredart' src={art3} alt=''/>
         <p className='title'>Meloncholy Reflections</p>
       </div>
 
+</div>
       <div className='panel'>
         <img className='featuredart' src={art1} alt=''/>
         <p className='title'>Vibrant Melodies</p>

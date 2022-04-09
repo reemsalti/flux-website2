@@ -45,7 +45,7 @@ function ShopCanvas() {
 						<div className='bgimg' style={{ zIndex: '99'}}>
       						<img className='grain' src={grain} alt=''/>
       					</div>
-						<Shop	/>
+						<Shop/>
 						<Footer/>
 					</div>
   </Scroll>

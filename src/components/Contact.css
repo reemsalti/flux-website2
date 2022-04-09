@@ -6,10 +6,6 @@
     width: 100%;
     
     z-index: 999;
-    /* background-image: url('./images/grain5.gif');
-    background-size: cover;
-    background-repeat: repeat; */
-    filter: url("./images/grain5.gif");
 }
 
 .hdr {
