@@ -5,12 +5,13 @@ import { Canvas } from '@react-three/fiber';
 import { Effect } from './Effect';
 import { ImagePlane } from './ImagePlane';
 import { Scroll, ScrollControls } from "@react-three/drei";
-import { Home } from './Home';
+
 import grain from './images/grain5.gif'
 import './Home.css'
+import { Gallery } from 'react-photoswipe-gallery';
 
 
-export const TCanvas: VFC = () => {
+export const GalleryCanvas: VFC = () => {
 	return (
 		
 		<Canvas style={{ position: 'relative'}}
@@ -44,7 +45,7 @@ export const TCanvas: VFC = () => {
 				<Scroll html>
 					<div className='wrapper' style={{width: "100vw", height: '300vh', backgroundSize: '100%', backgroundRepeat: 'repeat'}}>
 					<img className='grain' src={grain} alt='' style={{width: '100%', height: '100%' , zIndex: '999', opacity: '70%'}}/>
-						<Home/>
+						<Gallery/>
 					</div>
 				</Scroll>
 			</ScrollControls>
