@@ -13,7 +13,7 @@ export const Effect: VFC = () => {
 	const dist_datas = useControls('Distortion', {
 		enabled: true,
 		progress: { value: 0, min: 0.80, max: 0.90, step: 0.01 },
-		scale: { value: 1, min: 0.9, max: 0.9, step: 0.01 },
+		scale: { value: 1, min: 0.3, max: 0.9, step: 0.01 },
 		
 	})
 

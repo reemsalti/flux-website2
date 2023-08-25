@@ -40,8 +40,8 @@ function Contact() {
 	  <ImagePlane/>
   <Scroll html>
 	  <div className='wrapper' style={{width: "100vw", height: '136vh'}}>
-		  <div className='bgimg' style={{ zIndex: '99'}}>
-      		<img className='grain' src="https://i.gifer.com/Azgz.gif" alt=''/>
+		  <div className='bgimg' style={{ zIndex: '1'}}>
+      		{/* <img className='grain' src="https://i.gifer.com/Azgz.gif" alt=''/> */}
       	</div>
 	<Contactpage/>
 	<Footer/>

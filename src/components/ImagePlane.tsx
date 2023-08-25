@@ -5,7 +5,7 @@ import { publicPath } from '../utils/file';
 
 export const ImagePlane: VFC = () => {
 	const path = (name: string) => publicPath(`/assets/images/${name}.jpg`)
-	const textures = useTexture([path('photo4'), path('artwork1')])
+	const textures = useTexture([path('fluxcolors'), path('fluxcolors2')])
 
 	const material = (texture: THREE.Texture) =>
 		new THREE.ShaderMaterial({
@@ -21,7 +21,7 @@ export const ImagePlane: VFC = () => {
 	return (
 		<>
 			{textures.map((texture, i) => (
-				<Plane key={i} args={[6, 1 * (315 / 600)]} material={material(texture)} scale={0.9} position={[i - 1, 0, 0]} />
+				<Plane key={i} args={[0.4, 33 * (615 / 900)]} material={material(texture)} scale={0.9} position={[i - 1, 0, 0]} />
 			))}
 		
 		</>

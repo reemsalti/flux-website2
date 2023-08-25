@@ -6,6 +6,7 @@ import { Effect } from './Effect';
 import { ImagePlane } from './ImagePlane';
 import { Scroll, ScrollControls } from "@react-three/drei";
 import { Home } from './Home';
+import fluxLogo from './images/logo.png'
 
 import './Home.css'
 //import grain from './images/grain5.gif';
@@ -26,7 +27,7 @@ export const TCanvas: VFC = () => {
 			}}
 			dpr={window.devicePixelRatio}>
 			{/* canvas color */}
-			<color attach="background" args={['#000']} />
+			<color attach="background" args={['#1c1c1c']} />
 			{/* camera controller */}
 			{/* <OrbitControls attach="orbitControls" /> */}
 			{/* helper */}
@@ -34,7 +35,7 @@ export const TCanvas: VFC = () => {
 			{/* object */}
 			<Suspense fallback={null}>
 			<ScrollControls
-			pages={4.84} // Each page takes 100% of the height of the canvas
+			pages={1} // Each page takes 100% of the height of the canvas
 			distance={1} // A factor that increases scroll bar travel (default: 1)
 			damping={4} // Friction, higher is faster (default: 4)
 			horizontal={false} // Can also scroll horizontally (default: false)
@@ -42,13 +43,7 @@ export const TCanvas: VFC = () => {
 			><ImagePlane/>
 			<Preload/>
 				<Scroll html>
-					<div className='wrapper' style={{width: "100vw", height: '485vh'}}>
-					<div className='bgimg' style={{ zIndex: '99'}}>
-      						<p></p>
-      					</div>
-						<Home/>
-						<Footer/>
-					</div>
+				<img style={{display: 'flex', position: "absolute", width: "50rem", height: "40rem", zIndex: '1', bottom: '0', right: "0", justifyContent: 'center'}} src={fluxLogo} alt=''/>
 				</Scroll>
 			</ScrollControls>
 

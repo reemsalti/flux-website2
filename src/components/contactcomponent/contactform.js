@@ -46,12 +46,9 @@ export const ContactForm = () => {
      
   }; 
 
-   
-
-
 
   return (
-    <div className='formwrapper'>
+    <div className='formwrapper'>fav
     <div className='formcontainer'>
       <div className="topsection">
       <h3 className='formhdr'>Leave a message</h3>
