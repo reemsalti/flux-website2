@@ -1,10 +1,8 @@
 import { Leva } from 'leva';
 import React, {VFC } from 'react';
 import { TCanvas } from './TCanvas';
-import { HashRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import fluxLogo from './images/logo.png'
-//import grain from './images/grain5.gif'
 
 export const App: VFC =  () => {
 

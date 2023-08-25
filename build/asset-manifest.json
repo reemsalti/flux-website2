@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.8f2951ce.chunk.css",
+    "main.js": "/static/js/main.28509107.chunk.js",
+    "main.js.map": "/static/js/main.28509107.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.6ff1f57a.js",
+    "runtime-main.js.map": "/static/js/runtime-main.6ff1f57a.js.map",
+    "static/js/2.a65a8a71.chunk.js": "/static/js/2.a65a8a71.chunk.js",
+    "static/js/2.a65a8a71.chunk.js.map": "/static/js/2.a65a8a71.chunk.js.map",
+    "static/js/3.a976e03c.chunk.js": "/static/js/3.a976e03c.chunk.js",
+    "static/js/3.a976e03c.chunk.js.map": "/static/js/3.a976e03c.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.8f2951ce.chunk.css.map": "/static/css/main.8f2951ce.chunk.css.map",
+    "static/js/2.a65a8a71.chunk.js.LICENSE.txt": "/static/js/2.a65a8a71.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/static/media/spinwerad.b9674bf3.ttf",
+    "static/media/App.css": "/static/media/Aldrich-Regular.3505f452.ttf",
+    "static/media/logo.a920a425.png": "/static/media/logo.a920a425.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6ff1f57a.js",
+    "static/js/2.a65a8a71.chunk.js",
+    "static/css/main.8f2951ce.chunk.css",
+    "static/js/main.28509107.chunk.js"
+  ]
+}
