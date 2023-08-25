@@ -1,7 +1,10 @@
 {
-	"name": "thrunthru-shopifywebsite",
+	"name": "flux-website",
 	"version": "0.1.0",
 	"private": true,
+	"node": {
+		"crypto": true
+	  },
 	"homepage": "",
 	"dependencies": {
 		"@emailjs/browser": "^3.5.0",
