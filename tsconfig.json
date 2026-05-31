@@ -1,26 +1,33 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
     "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
+    "moduleResolution": "bundler",
     "isolatedModules": true,
+    "moduleDetection": "force",
+    "strict": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true
   },
-  "include": [
-    "src"
+  "include": ["src", "vite-env.d.ts"],
+  "exclude": [
+    "src/components/Contact.tsx",
+    "src/components/ContactCanvas.tsx",
+    "src/components/Gallery.tsx",
+    "src/components/GalleryCanvas.tsx",
+    "src/components/Home.tsx",
+    "src/components/Shop.tsx",
+    "src/components/ShopCanvas.tsx",
+    "src/components/Navbar",
+    "src/components/Sidebar",
+    "src/components/contactcomponent",
+    "src/components/Footer"
   ]
 }

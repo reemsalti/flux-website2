@@ -1,6 +1,6 @@
 import { useControls } from 'leva';
 
-import React, { useEffect, useRef, VFC } from 'react';
+import { useEffect, useRef, type FC } from 'react';
 import { EffectComposer, RenderPass, ShaderPass } from 'three-stdlib';
 import { extend, useFrame, useThree } from '@react-three/fiber';
 import { DistortionPass } from './postprocessing/DistortionPass';
@@ -9,7 +9,7 @@ import { RipplePass } from './postprocessing/RipplePass';
 extend({ EffectComposer, RenderPass, ShaderPass })
 
 
-export const Effect: VFC = () => {
+export const Effect: FC = () => {
 	const dist_datas = useControls('Distortion', {
 		enabled: true,
 		progress: { value: 0, min: 0.80, max: 0.90, step: 0.01 },
@@ -37,7 +37,7 @@ export const Effect: VFC = () => {
 
 	return (
 		<effectComposer ref={composerRef} args={[gl]}>
-			<renderPass attachArray="passes" args={[scene, camera]} />
+			<renderPass attach="passes" args={[scene, camera]} />
 			<DistortionPass {...dist_datas} />
 			<RipplePass {...ripple_datas} />
 			

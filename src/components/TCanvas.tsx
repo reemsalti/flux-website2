@@ -1,20 +1,16 @@
 
-import React, { Suspense, VFC } from 'react';
+import { Suspense, type FC } from 'react';
 import { Preload } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { Effect } from './Effect';
 import { ImagePlane } from './ImagePlane';
 import { Scroll, ScrollControls } from "@react-three/drei";
-import { Home } from './Home';
 import fluxLogo from './images/logo.png'
 
 import './Home.css'
-//import grain from './images/grain5.gif';
-import Footer from './Footer/Footer';
-//import { OrbitControls } from '@react-three/drei';
 
 
-export const TCanvas: VFC = () => {
+export const TCanvas: FC = () => {
 	return (
 		
 		<Canvas style={{ position: 'relative'}}

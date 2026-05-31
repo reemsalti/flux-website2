@@ -1,10 +1,10 @@
 import { Leva } from 'leva';
-import React, {VFC } from 'react';
+import type { FC } from 'react';
 import { TCanvas } from './TCanvas';
 import './App.css';
-import fluxLogo from './images/logo.png'
+import fluxLogo from './images/logo.png';
 
-export const App: VFC =  () => {
+export const App: FC = () => {
 
 	return (
 		<>
