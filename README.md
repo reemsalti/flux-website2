@@ -1,129 +1,71 @@
 # Through & Through
 
-**Live demo → [reemsalti.github.io/through-and-through](https://reemsalti.github.io/through-and-through/)**
+Portfolio site for painter Veronica Hermez.
 
-No install required — open the link in any modern browser (Chrome, Firefox, Safari, Edge). Best experienced on desktop with a mouse for the gallery fisheye lens.
+**Live site:** https://reemsalti.github.io/through-and-through/
 
-Art portfolio for painter **Veronica Hermez**. A scroll-driven, atmosphere-first experience built to put the work center stage while still feeling alive.
-
----
-
-## UX / UI — design decisions worth noting
-
-This is not a template portfolio. Every interaction was chosen to serve the art, not compete with it.
-
-### First impression: the intro as a doorway
-
-On a first visit, the homepage opens on black. The logo appears — an arch within an arch — then **zooms through the inner doorway** as the WebGL warp background wakes up behind it. Hero text fades in. The nav arrives last.
-
-- Plays **once per session** (`sessionStorage`) so return visits skip straight to the work
-- Respects **`prefers-reduced-motion`** — intro is skipped entirely for users who need it
-- The logo motif isn't decoration; it's the conceptual frame for the whole site
-
-### Scroll as navigation — one gesture, one section
-
-The home page is seven full-viewport sections: hero → artist statement → five gallery pieces. Scroll uses **native CSS snap** (`scroll-snap-type: y mandatory`, `scroll-snap-align: center`, `scroll-snap-stop: always`) — not JavaScript wheel hijacking.
-
-Why that matters: earlier JS scroll-lock prototypes caused double-scrolls, stuck sections, and random jumps. Moving to native snap gave predictable, tactile section-to-section movement with zero scroll-jank logic to maintain.
-
-### The warp background — atmosphere without distraction
-
-A full-screen **Three.js** flux texture runs behind every page with custom distortion and ripple postprocessing. It breathes. It responds to pointer movement. But it knows when to step back:
-
-- **Pauses** when the browser tab is hidden (battery + GPU)
-- **Dims and color-washes** when the user enters the portfolio (`gallery-focus`), driven by each painting's dominant tone
-- **Dual scrim layers** crossfade between home and inner routes (Shop, Contact)
-
-The background adds depth; it never steals focus from the paintings.
-
-### Portfolio gallery — editorial, not a carousel
-
-The gallery is a **vertical editorial flow**, not a slider or lightbox:
-
-- Each piece fills up to **95% of the viewport height**, centered with generous breathing room
-- Captions sit below: index number + italic title in Fraunces
-- Pieces **reveal on scroll** via `IntersectionObserver` — a soft fade/slide as each work enters view
-- Per-piece **`clip-path` crops** trim baked-in white borders from the source photos
-- **Background tone interpolation**: as you scroll between works, the warp scrim shifts color to match each painting's palette — the page literally absorbs the mood of the art
-
-### Fisheye magnifier lens — curiosity without leaving context
-
-On desktop, moving the cursor over the portfolio activates a **250px fisheye lens** that follows the pointer anywhere in the section:
-
-- Clones the live gallery DOM for a real-time magnified view (not a static zoom image)
-- Barrel distortion + liquid warp via an SVG displacement map
-- No magnifying-glass chrome or outline — just a soft shadow and the warped view
-- Disabled on touch devices and reduced-motion — no broken mobile UX
-
-It's an invitation to look closer, not a mode switch.
-
-### Artist statement — portrait as presence
-
-A fixed full-viewport section: artist photo on the left, vertical rule, statement text on the right. On mobile, it stacks gracefully. Scroll reveal animates photo and copy in together — the artist is introduced before the work speaks for itself.
-
-### Navigation — minimal, deferential
-
-Fixed transparent nav with uppercase Inter links. On the home page, it **hides on scroll down** after ~100px so the hero stays clean. It **disappears entirely during the intro**. Three routes only: Home, Shop (coming soon), Contact.
-
-### Accessibility & performance choices
-
-| Concern | Approach |
-|---|---|
-| Motion sensitivity | `prefers-reduced-motion` skips intro, gallery reveals, and fisheye |
-| Touch devices | Fisheye lens disabled; scroll snap still works natively |
-| GPU load | Canvas DPR capped at 1.5; ripple pass at half resolution; warp pauses off-tab |
-| Deploy size | Portfolio images converted to **WebP @ q85** (~35 MB → ~14 MB); unused assets removed |
-| Text selection | Disabled site-wide except inputs — intentional gallery feel; form fields remain selectable |
-
-### Typography & color
-
-Palette pulled from the paintings themselves: warm near-black canvas (`#0e0d0c`), off-white ink (`#f1ece2`), accent oranges from the work. **Fraunces** for display and titles, **Inter** for UI — serif warmth meets clean navigation.
+Open that in a browser — nothing to install. Desktop with a mouse is ideal (there's a fisheye lens in the gallery). Mobile works fine otherwise.
 
 ---
 
-## Stack
+## What it is
 
-| Layer | Tools |
-|---|---|
-| Build | Vite 6, TypeScript |
-| UI | React 18, React Router (HashRouter) |
-| Styling | CSS variables, component CSS, styled-components (navbar) |
-| 3D / FX | React Three Fiber, Three.js, custom distortion + ripple passes |
-| Fonts | Fraunces + Inter (Google Fonts) |
-| Contact | EmailJS, react-toastify |
-| Deploy | GitHub Pages (`gh-pages` branch) |
+A single-page scroll through the work: hero, artist statement, then five paintings one at a time. There's a WebGL warp running in the background on every page, an intro animation on first visit, and a contact form. Shop is a placeholder for now.
+
+The site started as an older Create React App project and got rebuilt on Vite + TypeScript. Same visual idea, cleaner codebase.
 
 ---
 
-## Viewing the site
+## How it feels to use
 
-### In the browser (recommended for reviewers)
+**Intro.** First time you land on home, you get a short animation — logo on black, then a zoom through the arch in the logo while the warp background fades in behind it. After that, the hero text and nav appear. It only runs once per session. If you have reduced motion on, it skips straight to the content.
 
-**[https://reemsalti.github.io/through-and-through/](https://reemsalti.github.io/through-and-through/)**
+**Scroll.** Seven sections, each roughly full screen. One scroll gesture, one section — that's handled with CSS scroll snap, not JavaScript. I tried wheel hijacking early on and it kept breaking (double scrolls, getting stuck between sections, random jumps). Native snap fixed all of that.
 
-Works on GitHub Pages via HashRouter — no server-side routing needed. To replay the intro animation: open DevTools → Application → Session Storage → delete `intro-seen` → reload.
+**Gallery.** Paintings stack vertically like a magazine spread, not a carousel. Each one takes up most of the viewport. Captions sit underneath — a number and the title in italic. As you scroll, pieces fade in and the background tint shifts to match each painting's colors. The photos had white borders baked in, so each one gets a slightly different crop via clip-path.
 
-### Running locally
+**Fisheye lens.** On desktop, hover anywhere in the gallery and a lens follows your cursor — magnified, slightly warped, no border around it. It clones the actual DOM so you're looking at the real layout, not a separate zoom image. Turned off on touch and reduced motion.
 
-Requires Node.js 20+ (see `.nvmrc`).
+**Statement.** Full-screen section with Veronica's photo on one side and her artist statement on the other. Stacks on small screens.
+
+**Nav.** Fixed, transparent, three links. Hides when you scroll down on the home page. Gone during the intro.
+
+---
+
+## Under the hood
+
+React 18, TypeScript, Vite. Three.js via React Three Fiber for the background — custom distortion and ripple shaders. React Router with a hash router so GitHub Pages doesn't need server config. Fraunces for headings, Inter for UI. EmailJS on the contact form.
+
+A few things I cared about while building:
+
+- Warp canvas pauses when the tab isn't visible
+- Gallery images are WebP now (~14 MB total instead of ~35 MB as JPEGs)
+- DPR capped at 1.5, ripple pass at half res — the background shouldn't melt a laptop
+- `prefers-reduced-motion` respected for intro, reveals, and the lens
+
+More detail in [`project brief.md`](project brief.md) if you want the full file map and scroll history.
+
+---
+
+## Run it locally
+
+Node 20+ (see `.nvmrc`).
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open the URL Vite prints (usually `http://localhost:5173`).
-
 ```bash
-npm run build    # production build
-npm run preview  # preview production build locally
-npm run deploy   # build + publish to GitHub Pages
+npm run build
+npm run preview
+npm run deploy   # publishes to GitHub Pages
 ```
+
+To replay the intro: DevTools → Application → Session Storage → delete `intro-seen` → reload.
 
 ---
 
 ## Repo
 
-[github.com/reemsalti/through-and-through](https://github.com/reemsalti/through-and-through)
-
-See [`project brief.md`](project brief.md) for full architecture notes, scroll behavior history, and file map.
+https://github.com/reemsalti/through-and-through
