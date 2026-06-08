@@ -32,6 +32,7 @@
   opacity: 0;
   visibility: hidden;
   will-change: transform;
+  isolation: isolate;
 }
 
 .gallery-fisheye__shift {
@@ -41,23 +42,35 @@
   transform-origin: 0 0;
   filter: url(#gallery-fisheye);
   will-change: transform;
+  backface-visibility: hidden;
 }
 
 .gallery-fisheye__clone-host {
   line-height: 0;
   position: relative;
+  overflow: visible;
 }
 
 .gallery-fisheye__clone {
   pointer-events: none;
   user-select: none;
   box-sizing: border-box;
+  margin: 0;
 }
 
 .gallery-fisheye__clone.gallery__piece {
-  height: auto !important;
-  min-height: 0 !important;
-  max-height: none !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+}
+
+.gallery-fisheye__clone.gallery__figure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
 }
 
 .gallery-fisheye__clone .gallery__figure,

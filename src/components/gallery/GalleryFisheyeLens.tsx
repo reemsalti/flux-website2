@@ -23,20 +23,26 @@ type GalleryFisheyeLensProps = {
   mapUrl: string;
 };
 
-const preparePieceClone = (piece: HTMLElement): HTMLElement => {
-  const clone = piece.cloneNode(true) as HTMLElement;
-  const { width } = piece.getBoundingClientRect();
+type LensTarget = {
+  key: string;
+  el: HTMLElement;
+  cloneEl: HTMLElement;
+};
+
+const prepareClone = (el: HTMLElement): HTMLElement => {
+  const clone = el.cloneNode(true) as HTMLElement;
+  const rect = el.getBoundingClientRect();
 
   clone.classList.add('gallery-fisheye__clone');
   clone.removeAttribute('data-scroll-section');
-  clone.style.width = `${width}px`;
-  clone.style.minWidth = `${width}px`;
-  clone.style.height = 'auto';
-  clone.style.minHeight = '0';
-  clone.style.maxHeight = 'none';
+  clone.style.width = `${rect.width}px`;
+  clone.style.height = `${rect.height}px`;
+  clone.style.minWidth = `${rect.width}px`;
+  clone.style.minHeight = `${rect.height}px`;
+  clone.style.boxSizing = 'border-box';
 
-  clone.querySelectorAll('[data-scroll-section]').forEach((el) => {
-    el.removeAttribute('data-scroll-section');
+  clone.querySelectorAll('[data-scroll-section]').forEach((node) => {
+    node.removeAttribute('data-scroll-section');
   });
   clone.querySelectorAll('img').forEach((img) => {
     img.loading = 'eager';
@@ -63,8 +69,10 @@ const findPieceAt = (
 
   pieces.forEach((piece) => {
     const rect = piece.getBoundingClientRect();
-    const dx = clientX < rect.left ? rect.left - clientX : clientX > rect.right ? clientX - rect.right : 0;
-    const dy = clientY < rect.top ? rect.top - clientY : clientY > rect.bottom ? clientY - rect.bottom : 0;
+    const dx =
+      clientX < rect.left ? rect.left - clientX : clientX > rect.right ? clientX - rect.right : 0;
+    const dy =
+      clientY < rect.top ? rect.top - clientY : clientY > rect.bottom ? clientY - rect.bottom : 0;
     const dist = dx * dx + dy * dy;
     if (dist < closestDist) {
       closestDist = dist;
@@ -75,25 +83,50 @@ const findPieceAt = (
   return closest;
 };
 
+const resolveLensTarget = (
+  piece: HTMLElement,
+  clientX: number,
+  clientY: number,
+): LensTarget => {
+  const figure = piece.querySelector<HTMLElement>('.gallery__figure');
+  const title = piece.querySelector('.gallery__title')?.textContent ?? piece.dataset.title ?? '';
+
+  if (figure) {
+    const figRect = figure.getBoundingClientRect();
+    const overFigure =
+      clientX >= figRect.left - 2 &&
+      clientX <= figRect.right + 2 &&
+      clientY >= figRect.top - 2 &&
+      clientY <= figRect.bottom + 2;
+
+    if (overFigure) {
+      return { key: `${title}-figure`, el: figure, cloneEl: figure };
+    }
+  }
+
+  return { key: `${title}-piece`, el: piece, cloneEl: piece };
+};
+
 export const GalleryFisheyeLens = forwardRef<FisheyeController, GalleryFisheyeLensProps>(
   function GalleryFisheyeLens({ contentRef, layoutKey, mapUrl }, ref) {
     const lensRef = useRef<HTMLDivElement>(null);
     const shiftRef = useRef<HTMLDivElement>(null);
     const cloneHostRef = useRef<HTMLDivElement>(null);
-    const activePieceRef = useRef<HTMLElement | null>(null);
+    const activeTargetKeyRef = useRef('');
 
-    const syncPieceClone = (piece: HTMLElement) => {
+    const syncClone = (target: LensTarget) => {
       const host = cloneHostRef.current;
       if (!host) return;
 
-      const { width } = piece.getBoundingClientRect();
+      const { width, height } = target.cloneEl.getBoundingClientRect();
       host.style.width = `${width}px`;
-      host.replaceChildren(preparePieceClone(piece));
-      activePieceRef.current = piece;
+      host.style.height = `${height}px`;
+      host.replaceChildren(prepareClone(target.cloneEl));
+      activeTargetKeyRef.current = target.key;
     };
 
     useEffect(() => {
-      activePieceRef.current = null;
+      activeTargetKeyRef.current = '';
       cloneHostRef.current?.replaceChildren();
     }, [layoutKey]);
 
@@ -111,11 +144,13 @@ export const GalleryFisheyeLens = forwardRef<FisheyeController, GalleryFisheyeLe
           return;
         }
 
-        if (piece !== activePieceRef.current) {
-          syncPieceClone(piece);
+        const target = resolveLensTarget(piece, clientX, clientY);
+
+        if (target.key !== activeTargetKeyRef.current) {
+          syncClone(target);
         }
 
-        const rect = piece.getBoundingClientRect();
+        const rect = target.el.getBoundingClientRect();
         const cx = clientX - rect.left;
         const cy = clientY - rect.top;
 
@@ -134,41 +169,71 @@ export const GalleryFisheyeLens = forwardRef<FisheyeController, GalleryFisheyeLe
 
     if (!mapUrl) return null;
 
+    const reducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     return createPortal(
       <>
         <svg className='gallery-fisheye-filter' aria-hidden='true'>
           <defs>
             <filter
               id={FISHEYE_FILTER_ID}
-              x='-35%'
-              y='-35%'
-              width='170%'
-              height='170%'
+              x='-60%'
+              y='-60%'
+              width='220%'
+              height='220%'
               colorInterpolationFilters='sRGB'
             >
               <feImage href={mapUrl} result='dispMap' />
               <feDisplacementMap
                 in='SourceGraphic'
                 in2='dispMap'
-                scale='42'
+                scale='36'
                 xChannelSelector='R'
                 yChannelSelector='G'
                 result='fish'
               />
               <feTurbulence
                 type='fractalNoise'
-                baseFrequency='0.016 0.022'
+                baseFrequency='0.015 0.021'
                 numOctaves='2'
                 seed='4'
                 result='warp'
-              />
+              >
+                {!reducedMotion && (
+                  <>
+                    <animate
+                      attributeName='baseFrequency'
+                      values='0.013 0.019;0.017 0.023;0.013 0.019'
+                      dur='5s'
+                      repeatCount='indefinite'
+                    />
+                    <animate
+                      attributeName='seed'
+                      values='4;7;4'
+                      dur='7s'
+                      repeatCount='indefinite'
+                    />
+                  </>
+                )}
+              </feTurbulence>
               <feDisplacementMap
                 in='fish'
                 in2='warp'
-                scale='4'
+                scale={reducedMotion ? '2' : '5'}
                 xChannelSelector='R'
                 yChannelSelector='G'
-              />
+              >
+                {!reducedMotion && (
+                  <animate
+                    attributeName='scale'
+                    values='3;6;3'
+                    dur='4s'
+                    repeatCount='indefinite'
+                  />
+                )}
+              </feDisplacementMap>
             </filter>
           </defs>
         </svg>
