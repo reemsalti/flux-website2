@@ -24,7 +24,7 @@ The site started as an older Create React App project and got rebuilt on Vite + 
 
 **Gallery.** Paintings stack vertically like a magazine spread, not a carousel. Each one takes up most of the viewport. Captions sit underneath — a number and the title in italic. As you scroll, pieces fade in and the background tint shifts to match each painting's colors. The photos had white borders baked in, so each one gets a slightly different crop via clip-path.
 
-**Fisheye lens.** On desktop, hover anywhere in the gallery and a lens follows your cursor — magnified, slightly warped, no border around it. It clones the actual DOM so you're looking at the real layout, not a separate zoom image. Turned off on touch and reduced motion.
+**Fisheye lens.** On desktop, hover anywhere in the gallery and a glass lens follows your cursor with a slight delay. Over a painting it magnifies and warps the artwork; move off the image and it shrinks to a thin ring. It clones the actual DOM at hi-res so you're looking at the real layout. Turned off on touch and reduced motion.
 
 **Statement.** Full-screen section with Veronica's photo on one side and her artist statement on the other. Stacks on small screens.
 

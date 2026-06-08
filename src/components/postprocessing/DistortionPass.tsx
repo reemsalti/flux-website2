@@ -1,5 +1,4 @@
 import { useMemo, useRef, type FC } from 'react';
-import * as THREE from 'three';
 import { ShaderPass } from 'three-stdlib';
 import { extend, useFrame } from '@react-three/fiber';
 
@@ -78,6 +77,5 @@ void main() {
   vec4 color = texture2D(tDiffuse, uv);
   
   gl_FragColor = color;
-  // gl_FragColor = vec4(vec3(length(p)), 1.0);
 }
 `

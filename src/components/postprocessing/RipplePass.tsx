@@ -1,5 +1,4 @@
 import { Suspense, useEffect, useMemo, useRef, type FC } from 'react';
-import * as THREE from 'three';
 import { ShaderPass } from 'three-stdlib';
 import { useTexture } from '@react-three/drei';
 import { extend, useFrame } from '@react-three/fiber';
@@ -87,6 +86,5 @@ void main() {
   vec4 color = texture2D(tDiffuse, uv);
 
   gl_FragColor = color;
-  // gl_FragColor = texture2D(u_displacement, v_uv);
 }
 `

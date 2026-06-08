@@ -94,7 +94,6 @@ export class RippleRenderer {
 		if (this._frequency < distance) {
 			this._setNewWave()
 			this._currentWave = (this._currentWave + 2) % this._max
-			// console.log(this._currentWave)
 		}
 		this._prevMouse.x = this._mouse.x
 		this._prevMouse.y = this._mouse.y

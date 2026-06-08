@@ -1,4 +1,4 @@
-export const parseHex = (hex: string): [number, number, number] => {
+const parseHex = (hex: string): [number, number, number] => {
   const normalized = hex.replace('#', '');
   const value = Number.parseInt(normalized, 16);
   return [(value >> 16) & 255, (value >> 8) & 255, value & 255];

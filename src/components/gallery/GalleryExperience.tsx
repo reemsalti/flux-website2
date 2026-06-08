@@ -4,6 +4,7 @@ import { lerpRgb, rgbString } from '../../utils/color';
 import { buildFisheyeMap } from '../../utils/fisheyeMap';
 import {
   canUseGalleryFisheye,
+  FISHEYE_MEDIA_QUERY,
   GalleryFisheyeLens,
   type FisheyeController,
 } from './GalleryFisheyeLens';
@@ -75,11 +76,11 @@ export const GalleryExperience: FC<GalleryExperienceProps> = ({ pieces }) => {
   const layoutKey = `${layout.stageHeight}-${layout.dims.map((d) => d.join('x')).join('|')}`;
 
   useEffect(() => {
-    setFisheyeMapUrl(buildFisheyeMap(160, 0.58));
+    setFisheyeMapUrl(buildFisheyeMap(256, 0.58, 0.42, 1.16));
   }, []);
 
   useEffect(() => {
-    const desktop = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 769px)');
+    const desktop = window.matchMedia(FISHEYE_MEDIA_QUERY);
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     const update = () => {
