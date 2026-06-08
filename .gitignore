@@ -8,6 +8,7 @@ dist/
 
 # Local-only dev notes (not for the public repo)
 project brief.md
+private-notes.md
 
 # Editor / tooling
 .cursor/
