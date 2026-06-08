@@ -121,7 +121,11 @@ export const GalleryFisheyeLens = forwardRef<FisheyeController, GalleryFisheyeLe
     const lensRef = useRef<HTMLDivElement>(null);
     const shiftRef = useRef<HTMLDivElement>(null);
     const cloneHostRef = useRef<HTMLDivElement>(null);
+    const turbRef = useRef<SVGFETurbulenceElement>(null);
+    const warpRef = useRef<SVGFEDisplacementMapElement>(null);
     const activeTargetKeyRef = useRef('');
+    const visibleRef = useRef(false);
+    const liquidTimeRef = useRef(0);
 
     const syncClone = (target: LensTarget) => {
       const host = cloneHostRef.current;
@@ -136,8 +140,36 @@ export const GalleryFisheyeLens = forwardRef<FisheyeController, GalleryFisheyeLe
 
     useEffect(() => {
       activeTargetKeyRef.current = '';
-      cloneHostRef.current?.replaceChildren();
     }, [layoutKey]);
+
+    useEffect(() => {
+      if (!mapUrl) return;
+
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reducedMotion) return;
+
+      let raf = 0;
+      let last = performance.now();
+
+      const tick = (now: number) => {
+        const dt = Math.min((now - last) / 1000, 0.05);
+        last = now;
+
+        if (visibleRef.current) {
+          liquidTimeRef.current += dt;
+          const t = liquidTimeRef.current;
+          const fx = 0.015 + Math.sin(t * 0.85) * 0.0016;
+          const fy = 0.021 + Math.cos(t * 0.7) * 0.0016;
+          turbRef.current?.setAttribute('baseFrequency', `${fx.toFixed(4)} ${fy.toFixed(4)}`);
+          warpRef.current?.setAttribute('scale', (4 + Math.sin(t * 1.05) * 1.1).toFixed(2));
+        }
+
+        raf = requestAnimationFrame(tick);
+      };
+
+      raf = requestAnimationFrame(tick);
+      return () => cancelAnimationFrame(raf);
+    }, [mapUrl]);
 
     useImperativeHandle(ref, () => ({
       show(clientX: number, clientY: number) {
@@ -148,6 +180,7 @@ export const GalleryFisheyeLens = forwardRef<FisheyeController, GalleryFisheyeLe
 
         const piece = findPieceAt(source, clientX, clientY);
         if (!piece) {
+          visibleRef.current = false;
           lens.style.opacity = '0';
           lens.style.visibility = 'hidden';
           return;
@@ -163,6 +196,7 @@ export const GalleryFisheyeLens = forwardRef<FisheyeController, GalleryFisheyeLe
         const cx = clientX - rect.left;
         const cy = clientY - rect.top;
 
+        visibleRef.current = true;
         lens.style.opacity = '1';
         lens.style.visibility = 'visible';
         lens.style.transform = `translate3d(${clientX - LENS_RADIUS}px, ${clientY - LENS_RADIUS}px, 0)`;
@@ -170,6 +204,7 @@ export const GalleryFisheyeLens = forwardRef<FisheyeController, GalleryFisheyeLe
       },
       hide() {
         const lens = lensRef.current;
+        visibleRef.current = false;
         if (!lens) return;
         lens.style.opacity = '0';
         lens.style.visibility = 'hidden';
@@ -177,10 +212,6 @@ export const GalleryFisheyeLens = forwardRef<FisheyeController, GalleryFisheyeLe
     }));
 
     if (!mapUrl) return null;
-
-    const reducedMotion =
-      typeof window !== 'undefined' &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     return createPortal(
       <>
@@ -204,45 +235,21 @@ export const GalleryFisheyeLens = forwardRef<FisheyeController, GalleryFisheyeLe
                 result='fish'
               />
               <feTurbulence
+                ref={turbRef}
                 type='fractalNoise'
                 baseFrequency='0.015 0.021'
                 numOctaves='2'
                 seed='4'
                 result='warp'
-              >
-                {!reducedMotion && (
-                  <>
-                    <animate
-                      attributeName='baseFrequency'
-                      values='0.013 0.019;0.017 0.023;0.013 0.019'
-                      dur='5s'
-                      repeatCount='indefinite'
-                    />
-                    <animate
-                      attributeName='seed'
-                      values='4;7;4'
-                      dur='7s'
-                      repeatCount='indefinite'
-                    />
-                  </>
-                )}
-              </feTurbulence>
+              />
               <feDisplacementMap
+                ref={warpRef}
                 in='fish'
                 in2='warp'
-                scale={reducedMotion ? '2' : '5'}
+                scale='4'
                 xChannelSelector='R'
                 yChannelSelector='G'
-              >
-                {!reducedMotion && (
-                  <animate
-                    attributeName='scale'
-                    values='3;6;3'
-                    dur='4s'
-                    repeatCount='indefinite'
-                  />
-                )}
-              </feDisplacementMap>
+              />
             </filter>
           </defs>
         </svg>
