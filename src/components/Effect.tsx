@@ -1,47 +1,31 @@
-import { useControls } from 'leva';
-
 import { useEffect, useRef, type FC } from 'react';
 import { EffectComposer, RenderPass, ShaderPass } from 'three-stdlib';
 import { extend, useFrame, useThree } from '@react-three/fiber';
 import { DistortionPass } from './postprocessing/DistortionPass';
 import { RipplePass } from './postprocessing/RipplePass';
 
-extend({ EffectComposer, RenderPass, ShaderPass })
+extend({ EffectComposer, RenderPass, ShaderPass });
 
+const DISTORTION = { enabled: true, progress: 0.85, scale: 0.6 };
+const RIPPLE = { enabled: true };
 
 export const Effect: FC = () => {
-	const dist_datas = useControls('Distortion', {
-		enabled: true,
-		progress: { value: 0, min: 0.80, max: 0.90, step: 0.01 },
-		scale: { value: 1, min: 0.3, max: 0.9, step: 0.01 },
-		
-	})
-
-	const ripple_datas = useControls('Ripple', {
-		enabled: true,
-		
-	})
-
-	
-
-	const composerRef = useRef<EffectComposer>(null)
-	const { gl, scene, camera, size } = useThree()
+	const composerRef = useRef<EffectComposer>(null);
+	const { gl, scene, camera, size } = useThree();
 
 	useEffect(() => {
-		composerRef.current!.setSize(size.width, size.height)
-	}, [size])
+		composerRef.current?.setSize(size.width, size.height);
+	}, [size]);
 
 	useFrame(() => {
-		composerRef.current!.render()
-	}, 1)
+		composerRef.current?.render();
+	}, 1);
 
 	return (
 		<effectComposer ref={composerRef} args={[gl]}>
-			<renderPass attach="passes" args={[scene, camera]} />
-			<DistortionPass {...dist_datas} />
-			<RipplePass {...ripple_datas} />
-			
+			<renderPass attach='passes-0' args={[scene, camera]} />
+			<DistortionPass attach='passes-1' {...DISTORTION} />
+			<RipplePass attach='passes-2' {...RIPPLE} />
 		</effectComposer>
-		
-	)
-}
+	);
+};

@@ -3,5 +3,5 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  base: process.env.GH_PAGES === "true" ? "/flux-website2/" : "/",
+  base: process.env.GH_PAGES === "true" ? "/through-and-through/" : "/",
 });

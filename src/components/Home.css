@@ -1,247 +1,191 @@
-.container {
-  color: white;
-  top: 0;
-  position: absolute;
-  margin: 0 auto;
+.home {
   width: 100%;
-  justify-content: center;
-  
+  position: relative;
+  z-index: 1;
 }
 
-.hdr {
-  margin: 0 auto;
-  color: white;
-  z-index: 999;
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-optical-sizing: auto;
+  font-size: clamp(1.7rem, 4.5vw, 2.6rem);
+  text-align: center;
+  letter-spacing: -0.01em;
+  margin: 0 0 2.5rem;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.65);
+}
+
+.hero {
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100dvh;
+  max-height: 100dvh;
+  box-sizing: border-box;
   display: flex;
-  top: 5rem;
-  position: absolute;
-  height: auto;
-  justify-content: center;
-  
-}
-
-.slogan {
-  font-family: 'CopperplateN';
-  font-size: 1.1rem;
-  text-align: center;
-  position: absolute;
-  top: 40vh;
-  width: 100%;
-  justify-content: center;
-  align-items: Left;
-  
-}
-
-.by {
-  font-family: 'CopperplateN';
-  font-size: 0.8rem;
-  text-align: center;
-  position: absolute;
-  top: 43vh;
-  width: 100%;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  
+  justify-content: center;
+  text-align: center;
+  gap: 1.4rem;
+  padding: 6rem 1.5rem 4rem;
 }
 
-
-/* header styles  */
-@media screen and (min-width: 460px) {
-  .dtview {
-    top: 30vh;
-    position: absolute;
-    text-align: center;
-    margin: 0 auto;
-    justify-content: center;
-    width: 100%;
-    font-size: 2.8rem;
-    font-weight: bolder;
-    line-height: 3rem;
-    font-family: "Copperplate";
-    z-index: 999;
-  }
-  
-  .artiststmnt {
-    max-width: 500px;
-  }
-/* dt view */
-  .featuredart {
-    width: 100%;
-    max-width: 460px;
-    padding: 0 auto;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    position: relative;
-    
-  }
-  
-  .featuredart2 {
-    width: 100%;
-    max-width: 460px;
-    padding: 1rem auto;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    position: relative;
-    
-  }
-
-  .panel2 {
-    display: flex;
-    margin: 1rem auto;
-    padding: 2rem;
-    
-    
-  }
-  
-  .subpanel {
-    max-width: 260px;
-    margin: 0 auto;
-    
-  }
-
-  .panel {
-    
-    width: 100%;
-    margin: 1rem auto;
-    padding-bottom: 1rem;
-    padding-top: 2rem;
-  }
-  .featured {
-    padding-bottom: 4rem;
-  }
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-optical-sizing: auto;
+  font-size: clamp(3rem, 11vw, 7rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-shadow: 0 4px 40px rgba(0, 0, 0, 0.55);
 }
 
-
-.mbview {
-  visibility: hidden;
+.hero__slogan {
+  font-family: var(--font-body);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.42em;
+  font-size: clamp(0.7rem, 2vw, 0.95rem);
+  color: var(--accent-soft);
+  margin: 0;
+  padding-left: 0.42em;
 }
 
-@media screen and (max-width: 460px) {
-  .mbview {
-    visibility: visible;
-    position: absolute;
-    text-align: center;
-    margin: 0 auto;
-    top: 25vh;
-    justify-content: center;
-    width: 100%;
-    z-index: 999;
-    font-size: 3rem;
-    font-weight: bolder;
-    line-height: 3rem;
-    font-family: "Copperplate";
-  }
-  .dtview {
-    visibility: hidden;
-  }
- 
-
-  .featured {
-    margin-top: 13rem;
-  }
-
-  .featuredart {
-    width: 100%;
-    max-width: 280px;
-    padding: 0 auto;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    
-    
-  }
-  
-  .panel {
-    
-    width: 100%;
-    margin: 1rem auto;
-    padding-bottom: 1rem;
-    padding-top: 2rem;
-  }
-  
-  .panel2 {
-    
-    margin: 0 auto;
-    padding: 1rem;
-   
-    
-  }
+.hero__by {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(0.95rem, 2.4vw, 1.2rem);
+  color: var(--muted);
+  margin: 0;
 }
 
-.arrow {
-  bottom: 1rem;
-  font-size: 2rem;
-  position: absolute;
-  right: 0;
-  z-index: 999;
-}
-
-a {
-  text-decoration: none;
-  color: white;
-  scroll-behavior: smooth;
-}
-
-/* art display  */
-.featured {
-  z-index: 999;
-  position: absolute;
-  top: 175vh;
-  margin: 0 auto;
+.statement {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  height: 100dvh;
+  min-height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+  display: flex;
   align-items: center;
+  padding: 5rem clamp(1.25rem, 4vw, 3.5rem) 4rem;
+}
+
+.statement__layout {
+  display: grid;
+  grid-template-columns: clamp(13rem, 32vw, 26rem) 1fr;
+  gap: clamp(1.5rem, 3vw, 2.75rem);
+  align-items: stretch;
   width: 100%;
+}
+
+.statement__portrait,
+.statement__content {
+  opacity: 0;
+  transform: translate3d(0, 2rem, 0);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.statement__portrait {
+  transform: translate3d(-1.75rem, 2rem, 0);
+}
+
+.statement.is-inview .statement__portrait {
+  transition-delay: 0.06s;
+}
+
+.statement.is-inview .statement__content {
+  transition-delay: 0.18s;
+}
+
+.statement.is-inview .statement__portrait,
+.statement.is-inview .statement__content {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.statement__portrait {
+  margin: 0;
+  min-height: 0;
+  display: flex;
+}
+
+.statement__portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center top;
+  display: block;
+  filter: drop-shadow(0 0 18px rgba(0, 0, 0, 0.35));
+}
+
+.statement__content {
+  min-width: 0;
+  padding-left: clamp(1.25rem, 2.5vw, 2.25rem);
+  border-left: 1px solid var(--line);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
- text-align: center;
- 
 }
 
-.biosection {
-  margin: 0 auto;
-  width: 100%;
-  justify-content: center;
-  position: absolute;
-  top: 125vh;
-  padding: 2rem;
-  background-color: rgba(0, 0, 0, 0.252);
+.statement__label {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 1.75rem;
 }
 
-.artiststmnt {
-  align-content: center;
-  font-size: 1rem;
-  line-height: 1rem;
-  width: 100%;
-  text-align: center;
-  font-family: CopperplateN;
-  margin: 0 auto;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  
+.statement__body {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-optical-sizing: auto;
+  font-size: clamp(1.05rem, 1.35vw, 1.35rem);
+  line-height: 1.85;
+  margin: 0;
+  color: rgba(241, 236, 226, 0.9);
+  text-shadow: 0 0 28px rgba(0, 0, 0, 0.35);
 }
 
-.stmnthdr {
-  margin: 0 auto;
-  width: 100%;
-  font-size: 1.5rem;
-  position: absolute;
-  text-align: center;
-  font-family: Copperplate;
-  top: 119vh;
+@media (max-width: 767px) {
+  .statement__layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .statement__portrait {
+    width: min(15rem, 78vw);
+  }
+
+  .statement__portrait img {
+    height: auto;
+    aspect-ratio: 766 / 1024;
+  }
+
+  .statement__content {
+    width: 100%;
+    border-left: none;
+    padding-left: 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
 }
 
-.fthdr {
-  font-family: Copperplate;
-  font-size: 1.5rem;
-
-}
-
-.subpanel {
-  margin: 0 auto;
-  padding-top: 1rem;
-}
-
-.title {
-  font-family: CopperplateN;
-  font-size: 1.1rem;
+@media (prefers-reduced-motion: reduce) {
+  .statement__portrait,
+  .statement__content {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }

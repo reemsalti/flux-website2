@@ -1,0 +1,179 @@
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: all;
+  transition: opacity 0.35s ease;
+}
+
+.intro__hole {
+  --logo: min(16rem, 52vw);
+  --door-w: calc(var(--logo) * 0.148);
+  --door-h: calc(var(--logo) * 0.192);
+
+  position: fixed;
+  left: 50%;
+  top: calc(50% + var(--logo) * 0.052);
+  width: var(--door-w);
+  height: var(--door-h);
+  transform: translate3d(-50%, -50%, 0) scale(1);
+  transform-origin: center center;
+  backface-visibility: hidden;
+  will-change: transform;
+  background: transparent;
+  border-radius: 50% 50% 42% 42% / 72% 72% 0 0;
+  box-shadow: 0 0 0 100vmax #0e0d0c;
+  z-index: 10001;
+  animation: intro-hole-zoom 2.5s cubic-bezier(0.52, 0.02, 0.18, 1) forwards;
+}
+
+.intro__logo {
+  --logo: min(16rem, 52vw);
+
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: var(--logo);
+  height: var(--logo);
+  transform: translate3d(-50%, -50%, 0);
+  z-index: 10002;
+  pointer-events: none;
+  background: #f1ece2;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  animation: intro-logo-fade 1.6s ease forwards;
+}
+
+/* Beat 1: hold on the door, then push through (~2s zoom) */
+@keyframes intro-hole-zoom {
+  0%,
+  20% {
+    transform: translate3d(-50%, -50%, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(-50%, -50%, 0) scale(58);
+  }
+}
+
+@keyframes intro-logo-fade {
+  0%,
+  12% {
+    opacity: 1;
+  }
+  42% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Beat 2: warp fully revealed — overlay lifts */
+body.intro-text-in .intro {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Beat 2: warp scales in sync with the door zoom */
+body.intro-active .warp-bg {
+  animation: intro-warp-through 2.5s cubic-bezier(0.52, 0.02, 0.18, 1) forwards;
+  transform-origin: 50% 54%;
+  transition: none;
+}
+
+@keyframes intro-warp-through {
+  0%,
+  20% {
+    transform: scale(1.14);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Keep warp visible through the arch hole during beats 1–2 */
+body.intro-active .warp-scrim--home.is-active {
+  opacity: 0;
+}
+
+body.intro-text-in .warp-scrim--home.is-active {
+  opacity: 1;
+  transition: opacity 0.7s ease;
+}
+
+body.intro-active {
+  overflow: hidden;
+}
+
+body.intro-active .app {
+  overflow: visible;
+}
+
+/* Beat 3: hero copy enters after warp is open */
+body.intro-active:not(.intro-text-in) .hero__title,
+body.intro-active:not(.intro-text-in) .hero__slogan,
+body.intro-active:not(.intro-text-in) .hero__by {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(14px);
+  animation: none !important;
+}
+
+body.intro-text-in .hero__title,
+body.intro-text-in .hero__slogan,
+body.intro-text-in .hero__by {
+  visibility: visible;
+  animation: intro-hero-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+body.intro-text-in .hero__title {
+  animation-delay: 0.05s;
+}
+
+body.intro-text-in .hero__slogan {
+  animation-delay: 0.22s;
+}
+
+body.intro-text-in .hero__by {
+  animation-delay: 0.38s;
+}
+
+@keyframes intro-hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body.intro-active .statement,
+body.intro-active .gallery {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+body.intro-active nav {
+  opacity: 0;
+  pointer-events: none;
+}
+
+body.intro-text-in nav {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.6s ease 0.35s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro__hole,
+  .intro__logo {
+    animation-duration: 0.01ms;
+    animation-delay: 0ms;
+  }
+}

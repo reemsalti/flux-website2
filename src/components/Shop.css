@@ -1,13 +1,37 @@
-.hdr2 {
-    top: 45vh;
-    position: absolute;
-    text-align: center;
-    margin: 0 auto;
-    justify-content: center;
-    width: 100%;
-    font-size: 1rem;
-    font-weight: bolder;
-    line-height: 3rem;
-    font-family: "Kasse";
-    z-index: 999;
+.shop {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 8rem 1.5rem 5rem;
+  text-align: center;
+}
+
+.shop__hdr {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-optical-sizing: auto;
+  font-size: clamp(2.4rem, 7vw, 3.6rem);
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-shadow: 0 4px 32px rgba(0, 0, 0, 0.65);
+}
+
+.shop__sub {
+  font-family: var(--font-body);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.34em;
+  font-size: clamp(0.8rem, 2.4vw, 1rem);
+  color: var(--accent-soft);
+  margin: 0;
+  padding-left: 0.34em;
+  text-shadow:
+    0 0 18px rgba(0, 0, 0, 0.42),
+    0 0 36px rgba(0, 0, 0, 0.32);
 }

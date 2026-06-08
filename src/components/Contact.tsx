@@ -1,40 +1,30 @@
-import React from 'react';
 import './Contact.css';
-import {ContactForm} from './contactcomponent/contactform';
+import { ContactForm } from './contactcomponent/contactform';
 import { GrInstagram } from 'react-icons/gr';
 import { FiMail } from 'react-icons/fi';
 
-// import FooterComponent from './Footer/Footer.js';
-
-// import grain from './images/grain5.gif';
-
-const Contactpage =()=> {
+const Contactpage = () => {
   return (
-    <div className='container'>
-        {/* <img className='grain' src={grain} alt='' /> */}
-         <h1 className='hdr'>Contact</h1>
-          <div className='contactdetails'>
-            <div className='link'>
-            <GrInstagram className='cicon'/>
-             <a className='clink' href='https://www.instagram.com/thrundthru/' target='t_blank'>
-              @thrundthru
-            </a>
-            </div>
-            <br></br>
-            <div className='link'>
-           <FiMail className='cicon'/><a className='clink' href='mailto:throughandthroughart@hotmail.com' target='t_blank'>
-              throughandthroughart@hotmail.com
-            </a>
-            </div>
-          </div>
-          <div>
-          
-          </div>
-         <div className='formwrapper'>
-           
-         <ContactForm/>
-         </div>
+    <div className='contact'>
+      <h1 className='contact__hdr'>Contact</h1>
+
+      <div className='contact__details'>
+        <a
+          className='contact__link'
+          href='https://www.instagram.com/thrundthru/'
+          target='_blank'
+          rel='noreferrer'
+        >
+          <GrInstagram className='contact__icon' /> @thrundthru
+        </a>
+        <a className='contact__link' href='mailto:throughandthroughart@hotmail.com'>
+          <FiMail className='contact__icon' /> throughandthroughart@hotmail.com
+        </a>
+      </div>
+
+      <ContactForm />
     </div>
-  )
-}
+  );
+};
+
 export default Contactpage;

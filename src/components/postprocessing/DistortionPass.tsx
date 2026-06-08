@@ -9,10 +9,11 @@ type DistortionPassType = {
 	enabled?: boolean
 	progress?: number
 	scale?: number
+	attach?: string
 }
 
 export const DistortionPass: FC<DistortionPassType> = (props) => {
-	const { enabled = true, progress = 1, scale = 1 } = props
+	const { enabled = true, progress = 1, scale = 1, attach = 'passes-1' } = props
 
 	const distortionRef = useRef<ShaderPass>(null)
 
@@ -36,7 +37,7 @@ export const DistortionPass: FC<DistortionPassType> = (props) => {
 	return (
 		<shaderPass
 			ref={distortionRef}
-			attach="passes"
+			attach={attach}
 			args={[shader]}
 			enabled={enabled}
 			uniforms-u_progress-value={progress}

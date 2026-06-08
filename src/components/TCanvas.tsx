@@ -1,56 +1,30 @@
-
 import { Suspense, type FC } from 'react';
-import { Preload } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { Effect } from './Effect';
 import { ImagePlane } from './ImagePlane';
-import { Scroll, ScrollControls } from "@react-three/drei";
-import fluxLogo from './images/logo.png'
 
-import './Home.css'
+type TCanvasProps = {
+	paused?: boolean;
+};
 
+const canvasDpr = () => Math.min(window.devicePixelRatio, 1.5);
 
-export const TCanvas: FC = () => {
-	return (
-		
-		<Canvas style={{ position: 'relative'}}
-			 camera={{
-				position: [0, 3, 1],
-				fov: 10,
-				aspect: window.innerWidth / window.innerHeight,
-				near: 0.1,
-				far: 2000
-			}}
-			dpr={window.devicePixelRatio}>
-			{/* canvas color */}
-			<color attach="background" args={['#1c1c1c']} />
-			{/* camera controller */}
-			{/* <OrbitControls attach="orbitControls" /> */}
-			{/* helper */}
-			{/* <Stats /> */}
-			{/* object */}
-			<Suspense fallback={null}>
-			<ScrollControls
-			pages={1} // Each page takes 100% of the height of the canvas
-			distance={1} // A factor that increases scroll bar travel (default: 1)
-			damping={4} // Friction, higher is faster (default: 4)
-			horizontal={false} // Can also scroll horizontally (default: false)
-			infinite={false} // Can also scroll infinitely (default: false)
-			><ImagePlane/>
-			<Preload/>
-				<Scroll html>
-				<img style={{display: 'flex', position: "absolute", width: "50rem", height: "40rem", zIndex: '1', bottom: '0', right: "0", justifyContent: 'center'}} src={fluxLogo} alt=''/>
-				</Scroll>
-			</ScrollControls>
-
-				
-			</Suspense>
-			<Preload/>
+export const TCanvas: FC<TCanvasProps> = ({ paused = false }) => (
+	<Canvas
+		style={{ width: '100%', height: '100%', display: 'block' }}
+		frameloop={paused ? 'never' : 'always'}
+		camera={{
+			position: [0, 0, 1],
+			fov: 50,
+			near: 0.1,
+			far: 2000,
+		}}
+		dpr={canvasDpr()}
+	>
+		<color attach='background' args={['#000000']} />
+		<Suspense fallback={null}>
+			<ImagePlane />
 			<Effect />
-			
-		</Canvas>
-		
-		
-		
-	)
-}
+		</Suspense>
+	</Canvas>
+);

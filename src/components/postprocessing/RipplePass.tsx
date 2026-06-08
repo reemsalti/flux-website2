@@ -10,14 +10,15 @@ extend({ ShaderPass })
 
 type RipplePassType = {
 	enabled?: boolean
+	attach?: string
 }
 
 export const RipplePass: FC<RipplePassType> = (props) => {
-	const { enabled = true } = props
+	const { enabled = true, attach = 'passes-2' } = props
 
 	return (
 		<Suspense fallback={null}>
-			<Ripple enabled={enabled} />
+			<Ripple enabled={enabled} attach={attach} />
 		</Suspense>
 	)
 }
@@ -25,10 +26,11 @@ export const RipplePass: FC<RipplePassType> = (props) => {
 // ========================================================
 type RippleType = {
 	enabled?: boolean
+	attach?: string
 }
 
 const Ripple: FC<RippleType> = (props) => {
-	const { enabled = true } = props
+	const { enabled = true, attach = 'passes-2' } = props
 
 	const shaderRef = useRef<ShaderPass>(null)
 
@@ -54,7 +56,7 @@ const Ripple: FC<RippleType> = (props) => {
 		effect.update(gl, shaderRef.current!.uniforms.u_displacement)
 	})
 
-	return <shaderPass ref={shaderRef} attach="passes" args={[shader]} enabled={enabled} />
+	return <shaderPass ref={shaderRef} attach={attach} args={[shader]} enabled={enabled} />
 }
 
 // --------------------------------------------------------

@@ -1,68 +1,74 @@
-import React from 'react';
+import { useEffect, useRef } from 'react';
 import './Home.css';
-import art1 from './images/artwork1.jpg';
-import art2 from './images/photo2.jpg';
-import art3 from './images/photo3.jpg';
-import art4 from './images/photo4.jpg';
-import art5 from './images/photo5.jpg';
-
+import { portfolio } from '../data/portfolio';
+import { publicPath } from '../utils/file';
+import { useScrollSections } from '../utils/useScrollSections';
+import { GalleryExperience } from './gallery/GalleryExperience';
 
 export const Home = () => {
+  const statementRef = useRef<HTMLElement>(null);
+
+  useScrollSections();
+
+  useEffect(() => {
+    const el = statementRef.current;
+    if (!el) return;
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        el.classList.toggle('is-inview', entry.isIntersecting);
+      },
+      { threshold: 0.2, rootMargin: '0px 0px -10% 0px' },
+    );
+
+    observer.observe(el);
+
+    if (reduced) {
+      el.classList.add('is-inview');
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <>
-    <div className='container'>
-      
-      <div className='hdr'>
-        <h1 className='dtview'>Through & Through</h1>
-        <h1 className='mbview'>Through<br></br>&<br></br>Through</h1>
-        <h2 className='slogan'>A Transcending Vision</h2>
-        <h2 className='by'> by Veronica Hermez</h2>
-      </div>
-      <h3 className='stmnthdr'>Artist's Statement</h3>
-      <div className='biosection'>
-        
-              <p className='artiststmnt'>"My fluid and bold work is created by 
-              showing up and allowing my first brush stroke to inspire the next. 
-              I create organic shapes and utilize a wide array of colors as a means 
-              of translation between my psyche and the viewer of my work. The shapes 
-              that I create are a result of my subconscious imagination and later inspire 
-              the subject matter; I aim to leave the interpretation of my work to each viewer."</p>
-      </div>
-      <div className='featured'> 
-      <h3 className='fthdr'>Portfolio</h3>
+    <div className='home'>
+      <section className='hero' data-scroll-section aria-label='Hero'>
+        <h1 className='hero__title'>Through &amp; Through</h1>
+        <p className='hero__slogan'>A Transcending Vision</p>
+        <p className='hero__by'>by Veronica Hermez</p>
+      </section>
 
-      <div className='panel'>
-        <img className='featuredart' src={art4} alt=''/>
-        <p className='title'>Through the Looking Glass</p>
-      </div>
+      <section
+        ref={statementRef}
+        className='statement'
+        data-scroll-section
+        aria-label='Artist statement'
+      >
+        <div className='statement__layout'>
+          <figure className='statement__portrait'>
+            <img
+              src={publicPath('/assets/images/artist.png')}
+              alt='Veronica Hermez'
+              decoding='async'
+            />
+          </figure>
+          <div className='statement__content'>
+            <p className='statement__label'>Artist statement</p>
+            <p className='statement__body'>
+              My fluid and bold work is created by showing up and allowing my first
+              brush stroke to inspire the next. I create organic shapes and utilize a
+              wide array of colors as a means of translation between my psyche and the
+              viewer of my work. The shapes that I create are a result of my subconscious
+              imagination and later inspire the subject matter; I aim to leave the
+              interpretation of my work to each viewer.
+            </p>
+          </div>
+        </div>
+      </section>
 
-<div className='panel2'>
-      <div className='subpanel'>
-        <img className='featuredart' src={art2} alt=''/>
-        <p className='title'>Mandate of Heaven</p>
-      </div>
-
-      <div className='subpanel'>
-        <img className='featuredart' src={art3} alt=''/>
-        <p className='title'>Meloncholy Reflections</p>
-      </div>
-
-</div>
-      <div className='panel'>
-        <img className='featuredart' src={art1} alt=''/>
-        <p className='title'>Vibrant Melodies</p>
-      </div>
-        
-      <div className='panel'>
-        <img className='featuredart' src={art5} alt=''/>
-        <p className='title'>Negative Space Monsters</p>
-      </div>
-
-      </div> 
-  
+      <GalleryExperience pieces={portfolio} />
     </div>
-  
-    </>
-  )
-}
-
+  );
+};

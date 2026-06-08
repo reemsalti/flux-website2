@@ -1,8 +1,8 @@
 {
-  "name": "flux-website2",
+  "name": "through-and-through",
   "version": "0.2.0",
   "private": true,
-  "description": "FLUX — immersive landing experience (React, Three.js, Vite)",
+  "description": "Through & Through — art portfolio for Veronica Hermez (React, Three.js, Vite)",
   "type": "module",
   "engines": {
     "node": ">=20"
@@ -14,11 +14,15 @@
     "deploy": "GH_PAGES=true npm run build && gh-pages -d dist"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "^8.17.10",
-    "leva": "^0.9.36",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-icons": "^5.6.0",
+    "react-router-dom": "^6.30.4",
+    "react-toastify": "^10.0.6",
+    "styled-components": "^6.4.2",
     "three": "^0.170.0",
     "three-stdlib": "^2.35.3"
   },

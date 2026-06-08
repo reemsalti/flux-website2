@@ -6,7 +6,7 @@ export class RippleRenderer {
 	private _camera: THREE.OrthographicCamera
 	private _meshs: THREE.Mesh[] = []
 	/** maximum # of ripples drawn */
-	private _max = 100
+	private _max = 40
 	/**  How much the mouse should move in one frame before drawing  */
 	private _frequency = 3
 	/** mouse coordinates */
@@ -22,7 +22,9 @@ export class RippleRenderer {
 	 */
 	constructor(private _texture: THREE.Texture) {
 		this._scene = new THREE.Scene()
-		this._target = new THREE.WebGLRenderTarget(window.innerWidth, window.innerHeight)
+		const w = Math.floor(window.innerWidth * 0.5)
+		const h = Math.floor(window.innerHeight * 0.5)
+		this._target = new THREE.WebGLRenderTarget(w, h)
 		// camera
 		const { width, height, near, far } = this._cameraProps()
 		this._camera = new THREE.OrthographicCamera(-width, width, height, -height, near, far)
@@ -72,7 +74,10 @@ export class RippleRenderer {
 		this._camera.top = height
 		this._camera.bottom = -height
 		this._camera.updateProjectionMatrix()
-		this._target.setSize(window.innerWidth, window.innerHeight)
+		this._target.setSize(
+			Math.floor(window.innerWidth * 0.5),
+			Math.floor(window.innerHeight * 0.5),
+		)
 	}
 
 	private _setNewWave = () => {

@@ -1,58 +1,41 @@
-.footer-container {
-  position: absolute;
-  bottom: 0;
-  z-index:999;
-  margin: 0 auto;
-  justify-content: center;
-  text-align: center;
-  background-color:rgba(0, 0, 0, 0.552);
-  width: 100%;
-  
-
-}
-
-.footernav {
-padding: 2rem;
-font-family: Copperplate;
-font-size: 0.9rem;
- }
-
-.fnlink {
-  padding: 2rem;
-  bottom: 0;
-}
-
-.copyright {
-  font-family: CopperplateN;
+.site-footer {
   position: relative;
-  padding: 0;
-  font-size: 0.8rem;
-  color: white;
-}
-
-
-.footerlogo {
-  height: 3rem;
-}
-
-/* .dev {
-  color: white;
-  font-size: 0.8rem;
-  padding-bottom: 2rem;
-  font-family: CopperplateN;
-  justify-content: right;
-  text-align: right;
-  padding-right: 1rem;
-} */
-
-.fl3 {
-  color: white;
+  z-index: 1;
   display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-  font-size: 0.7rem;
-  padding-top: 0rem;
-  padding: 1rem;
-  font-family: CopperplateN;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem 0.85rem;
+  padding: 1.75rem 1.5rem;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
+.site-footer__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.site-footer__link:hover {
+  color: var(--accent);
+}
+
+.site-footer__dot {
+  opacity: 0.35;
+}
+
+.site-footer__copy {
+  font-family: var(--font-display);
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0;
+}

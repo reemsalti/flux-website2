@@ -16,18 +16,5 @@
     "esModuleInterop": true,
     "resolveJsonModule": true
   },
-  "include": ["src", "vite-env.d.ts"],
-  "exclude": [
-    "src/components/Contact.tsx",
-    "src/components/ContactCanvas.tsx",
-    "src/components/Gallery.tsx",
-    "src/components/GalleryCanvas.tsx",
-    "src/components/Home.tsx",
-    "src/components/Shop.tsx",
-    "src/components/ShopCanvas.tsx",
-    "src/components/Navbar",
-    "src/components/Sidebar",
-    "src/components/contactcomponent",
-    "src/components/Footer"
-  ]
+  "include": ["src", "vite-env.d.ts"]
 }
