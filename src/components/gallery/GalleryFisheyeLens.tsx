@@ -47,7 +47,13 @@ const prepareClone = (el: HTMLElement): HTMLElement => {
   clone.querySelectorAll('img').forEach((img) => {
     img.loading = 'eager';
     img.decoding = 'sync';
+    img.style.opacity = '1';
   });
+
+  if (clone.classList.contains('gallery__figure')) {
+    clone.style.opacity = '1';
+    clone.style.transform = 'none';
+  }
 
   return clone;
 };
@@ -57,9 +63,12 @@ const findPieceAt = (
   clientX: number,
   clientY: number,
 ): HTMLElement | null => {
-  const hit = document.elementFromPoint(clientX, clientY);
-  const fromHit = hit?.closest('.gallery__piece') as HTMLElement | null;
-  if (fromHit && source.contains(fromHit)) return fromHit;
+  const stack = document.elementsFromPoint(clientX, clientY);
+  for (const el of stack) {
+    if (el.closest('.gallery-fisheye')) continue;
+    const fromHit = el.closest('.gallery__piece') as HTMLElement | null;
+    if (fromHit && source.contains(fromHit)) return fromHit;
+  }
 
   const pieces = [...source.querySelectorAll<HTMLElement>('.gallery__piece')];
   if (pieces.length === 0) return null;

@@ -73,9 +73,12 @@
   margin: 0;
 }
 
+.gallery-fisheye__clone.gallery__figure,
+.gallery-fisheye__clone.gallery__caption,
 .gallery-fisheye__clone .gallery__figure,
 .gallery-fisheye__clone .gallery__caption,
-.gallery-fisheye__clone .gallery__header {
+.gallery-fisheye__clone .gallery__header,
+.gallery-fisheye__clone .gallery__img {
   opacity: 1 !important;
   transform: none !important;
   transition: none !important;
