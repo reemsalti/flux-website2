@@ -79,9 +79,9 @@ export const GalleryExperience: FC<GalleryExperienceProps> = ({ pieces }) => {
     if (!fisheyePoint) return;
 
     const hide = () => setFisheyePoint(null);
-    window.addEventListener('scroll', hide, { passive: true, capture: true });
+    window.addEventListener('wheel', hide, { passive: true, capture: true });
 
-    return () => window.removeEventListener('scroll', hide, { capture: true });
+    return () => window.removeEventListener('wheel', hide, { capture: true });
   }, [fisheyePoint]);
 
   useEffect(() => {

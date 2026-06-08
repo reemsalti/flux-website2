@@ -37,7 +37,20 @@ export const Logo = styled(Link)`
 	display: flex;
 	align-items: center;
 	cursor: pointer;
+	text-decoration: none;
 	filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.45));
+	transition: opacity 0.2s ease, transform 0.2s ease;
+
+	&:hover {
+		opacity: 0.88;
+		transform: scale(1.02);
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--accent-soft);
+		outline-offset: 4px;
+		border-radius: 4px;
+	}
 
 	img {
 		height: 48px;

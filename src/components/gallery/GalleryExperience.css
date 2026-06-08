@@ -49,6 +49,14 @@
   user-select: none;
 }
 
+.gallery-fisheye__clone .gallery__figure,
+.gallery-fisheye__clone .gallery__caption,
+.gallery-fisheye__clone .gallery__header {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
 .gallery__clone-source {
   position: relative;
   width: 100%;

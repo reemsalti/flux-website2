@@ -1,7 +1,7 @@
 import { useEffect, useRef, type FC, type RefObject } from 'react';
 import { FISHEYE_FILTER_ID } from '../../utils/fisheyeMap';
 
-const LENS_SIZE = 250;
+const LENS_SIZE = 280;
 const LENS_RADIUS = LENS_SIZE / 2;
 const ZOOM = 2.15;
 
@@ -19,6 +19,19 @@ type GalleryFisheyeLensProps = {
   mapUrl: string;
 };
 
+const prepareClone = (source: HTMLElement): HTMLElement => {
+  const clone = source.cloneNode(true) as HTMLElement;
+  clone.classList.add('gallery-fisheye__clone');
+  clone.querySelectorAll('[data-scroll-section]').forEach((el) => {
+    el.removeAttribute('data-scroll-section');
+  });
+  clone.querySelectorAll('img').forEach((img) => {
+    img.loading = 'eager';
+    img.decoding = 'sync';
+  });
+  return clone;
+};
+
 export const GalleryFisheyeLens: FC<GalleryFisheyeLensProps> = ({
   point,
   contentRef,
@@ -30,16 +43,10 @@ export const GalleryFisheyeLens: FC<GalleryFisheyeLensProps> = ({
   useEffect(() => {
     const host = cloneHostRef.current;
     const source = contentRef.current;
-    if (!point || !host || !source) return;
+    if (!host || !source) return;
 
-    host.replaceChildren();
-    const clone = source.cloneNode(true) as HTMLElement;
-    clone.classList.add('gallery-fisheye__clone');
-    clone.querySelectorAll('[data-scroll-section]').forEach((el) => {
-      el.removeAttribute('data-scroll-section');
-    });
-    host.appendChild(clone);
-  }, [point, layoutKey, contentRef]);
+    host.replaceChildren(prepareClone(source));
+  }, [layoutKey, contentRef]);
 
   if (!mapUrl) return null;
 
@@ -82,26 +89,32 @@ export const GalleryFisheyeLens: FC<GalleryFisheyeLensProps> = ({
         </defs>
       </svg>
 
-      {point && (
+      <div
+        className='gallery-fisheye'
+        style={{
+          width: LENS_SIZE,
+          height: LENS_SIZE,
+          opacity: point ? 1 : 0,
+          visibility: point ? 'visible' : 'hidden',
+          transform: point
+            ? `translate(${point.mx - LENS_RADIUS}px, ${point.my - LENS_RADIUS}px)`
+            : undefined,
+        }}
+        aria-hidden='true'
+      >
         <div
-          className='gallery-fisheye'
-          style={{
-            width: LENS_SIZE,
-            height: LENS_SIZE,
-            transform: `translate(${point.mx - LENS_RADIUS}px, ${point.my - LENS_RADIUS}px)`,
-          }}
-          aria-hidden='true'
+          className='gallery-fisheye__shift'
+          style={
+            point
+              ? {
+                  transform: `translate(${LENS_RADIUS - point.cx * ZOOM}px, ${LENS_RADIUS - point.cy * ZOOM}px) scale(${ZOOM})`,
+                }
+              : undefined
+          }
         >
-          <div
-            className='gallery-fisheye__shift'
-            style={{
-              transform: `translate(${LENS_RADIUS - point.cx * ZOOM}px, ${LENS_RADIUS - point.cy * ZOOM}px) scale(${ZOOM})`,
-            }}
-          >
-            <div ref={cloneHostRef} className='gallery-fisheye__clone-host' />
-          </div>
+          <div ref={cloneHostRef} className='gallery-fisheye__clone-host' />
         </div>
-      )}
+      </div>
     </>
   );
 };

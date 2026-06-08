@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Nav, NavbarContainer, NavMenu, NavItem, Logo, NavLink } from './NavbarElements';
 import logoimg from '../images/logo1.png';
 
 const Navbar = ({ hidden = false }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const isHome = location.pathname === '/';
   const [scrollHidden, setScrollHidden] = useState(false);
 
@@ -34,11 +35,21 @@ const Navbar = ({ hidden = false }) => {
 
   const navHidden = hidden || scrollHidden;
 
+  const goHome = (event) => {
+    event.preventDefault();
+    if (isHome) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    navigate('/');
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  };
+
   return (
     <Nav className={navHidden ? 'nav--hidden' : ''}>
       <NavbarContainer>
-        <Logo to='/'>
-          <img className='logoimg' src={logoimg} alt='Through & Through' height='55px' />
+        <Logo to='/' onClick={goHome} aria-label='Through & Through — home'>
+          <img className='logoimg' src={logoimg} alt='' height='55px' />
         </Logo>
         <NavMenu>
           <NavItem>
