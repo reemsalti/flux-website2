@@ -5,7 +5,7 @@ import { buildFisheyeMap } from '../../utils/fisheyeMap';
 import {
   canUseGalleryFisheye,
   GalleryFisheyeLens,
-  type FisheyePoint,
+  type FisheyeController,
 } from './GalleryFisheyeLens';
 import './GalleryExperience.css';
 
@@ -58,7 +58,10 @@ const defaultDims = (count: number): [number, number][] =>
 export const GalleryExperience: FC<GalleryExperienceProps> = ({ pieces }) => {
   const sectionRef = useRef<HTMLElement>(null);
   const cloneSourceRef = useRef<HTMLDivElement>(null);
-  const [fisheyePoint, setFisheyePoint] = useState<FisheyePoint | null>(null);
+  const fisheyeRef = useRef<FisheyeController>(null);
+  const fisheyeActiveRef = useRef(false);
+  const lastPointerRef = useRef({ x: 0, y: 0 });
+  const [fisheyeActive, setFisheyeActive] = useState(false);
   const [fisheyeMapUrl, setFisheyeMapUrl] = useState('');
   const [fisheyeEnabled] = useState(canUseGalleryFisheye);
   const [layout, setLayout] = useState(() => {
@@ -76,13 +79,36 @@ export const GalleryExperience: FC<GalleryExperienceProps> = ({ pieces }) => {
   }, []);
 
   useEffect(() => {
-    if (!fisheyePoint) return;
+    if (!fisheyeEnabled) return;
 
-    const hide = () => setFisheyePoint(null);
-    window.addEventListener('wheel', hide, { passive: true, capture: true });
+    const onMove = (event: globalThis.MouseEvent) => {
+      if (!fisheyeActiveRef.current) return;
+      lastPointerRef.current = { x: event.clientX, y: event.clientY };
+      fisheyeRef.current?.show(event.clientX, event.clientY);
+    };
 
-    return () => window.removeEventListener('wheel', hide, { capture: true });
-  }, [fisheyePoint]);
+    const onScroll = () => {
+      if (!fisheyeActiveRef.current) return;
+      const { x, y } = lastPointerRef.current;
+      fisheyeRef.current?.show(x, y);
+    };
+
+    const onWheel = () => {
+      fisheyeActiveRef.current = false;
+      setFisheyeActive(false);
+      fisheyeRef.current?.hide();
+    };
+
+    document.addEventListener('mousemove', onMove, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true, capture: true });
+    window.addEventListener('wheel', onWheel, { passive: true, capture: true });
+
+    return () => {
+      document.removeEventListener('mousemove', onMove);
+      window.removeEventListener('scroll', onScroll, { capture: true });
+      window.removeEventListener('wheel', onWheel, { capture: true });
+    };
+  }, [fisheyeEnabled]);
 
   useEffect(() => {
     let cancelled = false;
@@ -220,34 +246,35 @@ export const GalleryExperience: FC<GalleryExperienceProps> = ({ pieces }) => {
     };
   }, [pieces, layout]);
 
+  const onGalleryMouseEnter = () => {
+    fisheyeActiveRef.current = true;
+    setFisheyeActive(true);
+  };
+
+  const onGalleryMouseLeave = () => {
+    fisheyeActiveRef.current = false;
+    setFisheyeActive(false);
+    fisheyeRef.current?.hide();
+  };
+
   const onGalleryMouseMove = (event: MouseEvent<HTMLElement>) => {
     if (!fisheyeEnabled) return;
-
-    const section = sectionRef.current;
-    const source = cloneSourceRef.current;
-    if (!section || !source) return;
-
-    const sourceRect = source.getBoundingClientRect();
-
-    setFisheyePoint({
-      x: event.clientX,
-      y: event.clientY,
-      cx: event.clientX - sourceRect.left,
-      cy: event.clientY - sourceRect.top,
-    });
+    lastPointerRef.current = { x: event.clientX, y: event.clientY };
+    fisheyeRef.current?.show(event.clientX, event.clientY);
   };
 
   return (
     <section
       ref={sectionRef}
-      className={`gallery${fisheyePoint ? ' gallery--fisheye-active' : ''}`}
+      className={`gallery${fisheyeActive ? ' gallery--fisheye-active' : ''}`}
       aria-label='Portfolio'
+      onMouseEnter={onGalleryMouseEnter}
       onMouseMove={onGalleryMouseMove}
-      onMouseLeave={() => setFisheyePoint(null)}
+      onMouseLeave={onGalleryMouseLeave}
     >
       {fisheyeEnabled && (
         <GalleryFisheyeLens
-          point={fisheyePoint}
+          ref={fisheyeRef}
           contentRef={cloneSourceRef}
           layoutKey={layoutKey}
           mapUrl={fisheyeMapUrl}
