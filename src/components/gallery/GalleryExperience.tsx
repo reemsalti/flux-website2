@@ -63,7 +63,7 @@ export const GalleryExperience: FC<GalleryExperienceProps> = ({ pieces }) => {
   const lastPointerRef = useRef({ x: 0, y: 0 });
   const [fisheyeActive, setFisheyeActive] = useState(false);
   const [fisheyeMapUrl, setFisheyeMapUrl] = useState('');
-  const [fisheyeEnabled] = useState(canUseGalleryFisheye);
+  const [fisheyeEnabled, setFisheyeEnabled] = useState(canUseGalleryFisheye);
   const [layout, setLayout] = useState(() => {
     const dims = defaultDims(pieces.length);
     return {
@@ -76,6 +76,29 @@ export const GalleryExperience: FC<GalleryExperienceProps> = ({ pieces }) => {
 
   useEffect(() => {
     setFisheyeMapUrl(buildFisheyeMap(160, 0.58));
+  }, []);
+
+  useEffect(() => {
+    const desktop = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 769px)');
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    const update = () => {
+      const enabled = desktop.matches && !reduced.matches;
+      setFisheyeEnabled(enabled);
+      if (!enabled) {
+        fisheyeActiveRef.current = false;
+        setFisheyeActive(false);
+        fisheyeRef.current?.hide();
+      }
+    };
+
+    update();
+    desktop.addEventListener('change', update);
+    reduced.addEventListener('change', update);
+    return () => {
+      desktop.removeEventListener('change', update);
+      reduced.removeEventListener('change', update);
+    };
   }, []);
 
   useEffect(() => {

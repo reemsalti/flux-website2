@@ -270,7 +270,9 @@ export const GalleryFisheyeLens = forwardRef<FisheyeController, GalleryFisheyeLe
   },
 );
 
+export const FISHEYE_MEDIA_QUERY = '(hover: hover) and (pointer: fine) and (min-width: 769px)';
+
 export const canUseGalleryFisheye = (): boolean =>
   typeof window !== 'undefined' &&
-  window.matchMedia('(hover: hover) and (pointer: fine)').matches &&
+  window.matchMedia(FISHEYE_MEDIA_QUERY).matches &&
   !window.matchMedia('(prefers-reduced-motion: reduce)').matches;

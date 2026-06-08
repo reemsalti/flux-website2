@@ -12,6 +12,17 @@
   cursor: none;
 }
 
+@media (max-width: 768px), (hover: none), (pointer: coarse) {
+  .gallery-fisheye,
+  .gallery-fisheye-filter {
+    display: none !important;
+  }
+
+  .gallery--fisheye-active {
+    cursor: auto;
+  }
+}
+
 .gallery-fisheye-filter {
   position: absolute;
   width: 0;
