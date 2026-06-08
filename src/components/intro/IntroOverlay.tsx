@@ -7,7 +7,7 @@ type IntroOverlayProps = {
 };
 
 /** Beat 1 hold → beat 2 door zoom → beat 3 hero text */
-export const INTRO_MS = 3800;
+const INTRO_MS = 3800;
 const TEXT_IN_MS = 2500;
 
 export const IntroOverlay: FC<IntroOverlayProps> = ({ onComplete }) => {

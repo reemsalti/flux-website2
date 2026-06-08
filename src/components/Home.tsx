@@ -2,13 +2,10 @@ import { useEffect, useRef } from 'react';
 import './Home.css';
 import { portfolio } from '../data/portfolio';
 import { publicPath } from '../utils/file';
-import { useScrollSections } from '../utils/useScrollSections';
 import { GalleryExperience } from './gallery/GalleryExperience';
 
 export const Home = () => {
   const statementRef = useRef<HTMLElement>(null);
-
-  useScrollSections();
 
   useEffect(() => {
     const el = statementRef.current;
