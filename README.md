@@ -43,13 +43,11 @@ A few things I cared about while building:
 - DPR capped at 1.5, ripple pass at half res — the background shouldn't melt a laptop
 - `prefers-reduced-motion` respected for intro, reveals, and the lens
 
-More detail in [`project brief.md`](project brief.md) if you want the full file map and scroll history.
-
 ---
 
 ## Run it locally
 
-Node 20+ (see `.nvmrc`).
+Node 20+ (see `.nvmrc`). Copy `.env.example` to `.env` and add EmailJS credentials if you need the contact form to work locally.
 
 ```bash
 npm install
