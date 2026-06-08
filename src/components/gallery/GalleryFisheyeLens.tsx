@@ -1,4 +1,5 @@
 import { useEffect, useRef, type FC, type RefObject } from 'react';
+import { createPortal } from 'react-dom';
 import { FISHEYE_FILTER_ID } from '../../utils/fisheyeMap';
 
 const LENS_SIZE = 280;
@@ -6,8 +7,8 @@ const LENS_RADIUS = LENS_SIZE / 2;
 const ZOOM = 2.15;
 
 export type FisheyePoint = {
-  mx: number;
-  my: number;
+  x: number;
+  y: number;
   cx: number;
   cy: number;
 };
@@ -21,6 +22,7 @@ type GalleryFisheyeLensProps = {
 
 const prepareClone = (source: HTMLElement): HTMLElement => {
   const clone = source.cloneNode(true) as HTMLElement;
+  clone.classList.remove('gallery__clone-source');
   clone.classList.add('gallery-fisheye__clone');
   clone.querySelectorAll('[data-scroll-section]').forEach((el) => {
     el.removeAttribute('data-scroll-section');
@@ -40,17 +42,36 @@ export const GalleryFisheyeLens: FC<GalleryFisheyeLensProps> = ({
 }) => {
   const cloneHostRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  const syncClone = () => {
     const host = cloneHostRef.current;
     const source = contentRef.current;
     if (!host || !source) return;
-
     host.replaceChildren(prepareClone(source));
+  };
+
+  useEffect(() => {
+    syncClone();
   }, [layoutKey, contentRef]);
+
+  useEffect(() => {
+    if (!point) return;
+
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(syncClone);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true, capture: true });
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('scroll', onScroll, { capture: true });
+    };
+  }, [point, layoutKey, contentRef]);
 
   if (!mapUrl) return null;
 
-  return (
+  const lens = (
     <>
       <svg className='gallery-fisheye-filter' aria-hidden='true'>
         <defs>
@@ -97,7 +118,7 @@ export const GalleryFisheyeLens: FC<GalleryFisheyeLensProps> = ({
           opacity: point ? 1 : 0,
           visibility: point ? 'visible' : 'hidden',
           transform: point
-            ? `translate(${point.mx - LENS_RADIUS}px, ${point.my - LENS_RADIUS}px)`
+            ? `translate3d(${point.x - LENS_RADIUS}px, ${point.y - LENS_RADIUS}px, 0)`
             : undefined,
         }}
         aria-hidden='true'
@@ -107,7 +128,7 @@ export const GalleryFisheyeLens: FC<GalleryFisheyeLensProps> = ({
           style={
             point
               ? {
-                  transform: `translate(${LENS_RADIUS - point.cx * ZOOM}px, ${LENS_RADIUS - point.cy * ZOOM}px) scale(${ZOOM})`,
+                  transform: `translate3d(${LENS_RADIUS - point.cx * ZOOM}px, ${LENS_RADIUS - point.cy * ZOOM}px, 0) scale(${ZOOM})`,
                 }
               : undefined
           }
@@ -117,6 +138,8 @@ export const GalleryFisheyeLens: FC<GalleryFisheyeLensProps> = ({
       </div>
     </>
   );
+
+  return createPortal(lens, document.body);
 };
 
 export const canUseGalleryFisheye = (): boolean =>

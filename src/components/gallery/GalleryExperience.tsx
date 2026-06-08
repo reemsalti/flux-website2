@@ -227,12 +227,11 @@ export const GalleryExperience: FC<GalleryExperienceProps> = ({ pieces }) => {
     const source = cloneSourceRef.current;
     if (!section || !source) return;
 
-    const sectionRect = section.getBoundingClientRect();
     const sourceRect = source.getBoundingClientRect();
 
     setFisheyePoint({
-      mx: event.clientX - sectionRect.left,
-      my: event.clientY - sectionRect.top,
+      x: event.clientX,
+      y: event.clientY,
       cx: event.clientX - sourceRect.left,
       cy: event.clientY - sourceRect.top,
     });

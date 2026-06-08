@@ -21,10 +21,10 @@
 }
 
 .gallery-fisheye {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: 12;
+  z-index: 200;
   pointer-events: none;
   border-radius: 50%;
   overflow: hidden;
